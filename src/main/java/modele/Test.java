@@ -9,13 +9,17 @@ public class Test {
         File doc = new File("fichier/membres_APPLI.txt");
         Scanner obj = new Scanner(doc);
         String regex = "[,\\.\\s]";
+        ListeMembres liste = new ListeMembres();
 
         while (obj.hasNextLine()) {
 
             String[] myArray = obj.nextLine().split(regex);
-            for (String s : myArray) {
-                System.out.println(s);
-            }
+            Membre membre = new Membre(myArray[0], myArray[1]);
+            liste.addMembre(membre);
+
         }
+
+        System.out.println(liste);
+
     }
 }
