@@ -1,8 +1,8 @@
 package modele;
 
 public class Membre {
-    String chNom;
-    String chVille;
+    private String chNom;
+    private String chVille;
 
     public Membre(String chNom, String chVille) {
         this.chNom = chNom;

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class Ville {
-    String chNomVille;
-    ArrayList<TreeMap<String, Integer>> chDistances;
+    private String chNomVille;
+    private ArrayList<TreeMap<String, Integer>> chDistances;
 
     public Ville(String chNomVille) {
         this.chNomVille = chNomVille;

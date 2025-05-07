@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class ListeMembres {
-    ArrayList<Membre> chMembres;
+    private ArrayList<Membre> chMembres;
     public ListeMembres() {
         chMembres = new ArrayList<Membre>();
     }
