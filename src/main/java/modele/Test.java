@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) throws FileNotFoundException {
+
         File doc = new File("fichier/membres_APPLI.txt");
         Scanner obj = new Scanner(doc);
         String regex = "[,\\.\\s]";

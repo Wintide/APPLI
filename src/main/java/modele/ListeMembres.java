@@ -1,11 +1,12 @@
 package modele;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class ListeMembres {
-    TreeSet<Membre> chMembres;
+    ArrayList<Membre> chMembres;
     public ListeMembres() {
-        chMembres = new TreeSet<>();
+        chMembres = new ArrayList<Membre>();
     }
 
     public void addMembre(Membre m) {

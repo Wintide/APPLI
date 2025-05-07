@@ -18,7 +18,7 @@ public class Membre {
     }
 
     public String toString() {
-        return "Nom du membre:" + chNom + ", lieu de résience" + chVille + "\n";
+        return "Nom du membre : " + chNom + ", lieu de résience : " + chVille + "\n";
     }
 
     public int compareTo(Membre parMembre) {
