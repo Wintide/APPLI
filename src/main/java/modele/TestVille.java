@@ -20,9 +20,10 @@ public class TestVille {
         }
         System.out.println(list);
 
-        while (obj.hasNextLine()) {
+        Scanner obj2 = new Scanner(doc);
+        while (obj2.hasNextLine()) {
 
-            String[] myArray = obj.nextLine().split(regex);
+            String[] myArray = obj2.nextLine().split(regex);
             Ville ville = new Ville(myArray[0]);
 
             for (int i = 1; i < myArray.length; i++) {
