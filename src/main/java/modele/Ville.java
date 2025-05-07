@@ -26,4 +26,8 @@ public class Ville {
         }
         return retour;
     }
+
+    public String getChNomVille() {
+        return chNomVille;
+    }
 }

@@ -20,4 +20,8 @@ public class ListeMembres {
         }
         return retour;
     }
+
+    public ArrayList<Membre> getChMembres() {
+        return chMembres;
+    }
 }

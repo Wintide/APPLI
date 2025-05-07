@@ -2,6 +2,7 @@ package modele;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Test {
@@ -20,7 +21,54 @@ public class Test {
 
         }
 
-        System.out.println(liste);
+        File doc2 = new File("fichier/distances.txt");
+        Scanner obj2 = new Scanner(doc2);
+        ArrayList<String> list = new ArrayList<String>();
+        while (obj2.hasNextLine()) {
+            String line = obj2.nextLine();
+            String[] split = line.split(regex);
+            list.add(split[0]);
+        }
+        ListeVilles listeVilles = new ListeVilles();
+        Scanner obj3 = new Scanner(doc2);
+        while (obj3.hasNextLine()) {
+
+            String[] myArray = obj3.nextLine().split(regex);
+            Ville ville = new Ville(myArray[0]);
+
+            for (int i = 1; i < myArray.length; i++) {
+                int dist = Integer.parseInt(myArray[i]);
+                ville.ajout(list.get(i - 1),dist);
+            }
+            listeVilles.ajoutVilles(ville);
+
+        }
+
+        Scanner numScenario = new Scanner(System.in);
+        System.out.println("Entrer le numéro du scenario");
+
+        String idSc = numScenario.nextLine();
+        int intId = Integer.parseInt(idSc);
+
+        File doc3 = new File("fichier/scenario_"+idSc+".txt");
+        Scanner obj4 = new Scanner(doc3);
+        Scenario scenario = new Scenario(intId);
+        while (obj4.hasNextLine()) {
+            String line = obj4.nextLine();
+            String[] split = line.split(regex);
+            scenario.ajout(split[0], split[2]);
+
+        }
+
+        Itineraire itineraire = new Itineraire(scenario,listeVilles,liste);
+
+        //System.out.println(itineraire.getScenario());
+        //System.out.println(itineraire.getMembres());
+        //System.out.println(itineraire.getVilles());
+
+        System.out.println(itineraire.associationMembresVilles());
+        System.out.println(itineraire.trouveVillePassage());
+
 
     }
 }

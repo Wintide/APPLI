@@ -5,4 +5,24 @@ import java.util.ArrayList;
 public class ListeVilles {
     private ArrayList<Ville> chVilles;
 
+    public ListeVilles() {
+        chVilles = new ArrayList<>();
+    }
+
+    public ArrayList<Ville> getChVilles() {
+        return chVilles;
+    }
+
+    public void ajoutVilles(Ville ville) {
+        chVilles.add(ville);
+    }
+
+    @Override
+    public String toString() {
+        String res = "";
+        for (Ville ville : chVilles) {
+            res += ville.toString() + "\n";
+        }
+        return res;
+    }
 }

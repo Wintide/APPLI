@@ -23,4 +23,8 @@ public class Scenario {
     public String toString() {
         return "Scenario [id=" + id + ", scenarios=" + scenarios + "]";
     }
+
+    public ArrayList<Pair<String,String>> getScenarios() {
+        return scenarios;
+    }
 }
