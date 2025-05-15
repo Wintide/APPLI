@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class TestScenarios {
     public static void main(String[] args) throws FileNotFoundException {
+        /*
         Scanner numScenario = new Scanner(System.in);
         System.out.println("Entrer le numéro du scenario");
 
@@ -22,7 +23,7 @@ public class TestScenarios {
             scenario.ajout(split[0], split[4]);
 
         }
-        System.out.println(scenario);
+        System.out.println(scenario);*/
 
 
     }

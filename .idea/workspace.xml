@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baa411ab-9796-4abc-81d2-eea7f0738795" name="Changes" comment="modif des classes + ajout des scenarios">
-      <change afterPath="$PROJECT_DIR$/src/main/java/modele/ClientGraphe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/modele/ClientGrapheOriente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/modele/Graphe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/modele/GrapheOriente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/modele/Itineraire.java" afterDir="false" />
+    <list default="true" id="baa411ab-9796-4abc-81d2-eea7f0738795" name="Changes" comment="Modification et Ajout de beaucoup de classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/ListeMembres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/ListeMembres.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/ListeVilles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/ListeVilles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/modele/Scenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Scenario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/modele/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/modele/TestScenarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/TestScenarios.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/Ville.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Ville.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,26 +55,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ClientGraphe.executor": "Run",
-    "Application.ClientGrapheOriente.executor": "Run",
-    "Application.Test.executor": "Run",
-    "Application.TestScenarios.executor": "Run",
-    "Application.TestVille.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/thoma/OneDrive/Bureau/DEV/Intellij/APPLI",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ClientGraphe.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ClientGrapheOriente.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestScenarios.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestVille.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Java/JavaFX2/projet2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\thoma\OneDrive\Bureau\DEV\Intellij\APPLI\src\main\java\modele" />
@@ -111,7 +103,9 @@
       <workItem from="1746602441245" duration="720000" />
       <workItem from="1746603496817" duration="1302000" />
       <workItem from="1746606033080" duration="516000" />
-      <workItem from="1746614387462" duration="7310000" />
+      <workItem from="1746614387462" duration="7989000" />
+      <workItem from="1747208287053" duration="34000" />
+      <workItem from="1747294254664" duration="673000" />
     </task>
     <task id="LOCAL-00001" summary="Création du projets">
       <option name="closed" value="true" />
@@ -161,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746604148403</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Modification et Ajout de beaucoup de classes">
+      <option name="closed" value="true" />
+      <created>1746621886040</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746621886040</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,6 +176,7 @@
     <MESSAGE value="Modif classes + pdf" />
     <MESSAGE value="Ajout des distances villes à villes" />
     <MESSAGE value="modif des classes + ajout des scenarios" />
-    <option name="LAST_COMMIT_MESSAGE" value="modif des classes + ajout des scenarios" />
+    <MESSAGE value="Modification et Ajout de beaucoup de classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modification et Ajout de beaucoup de classes" />
   </component>
 </project>

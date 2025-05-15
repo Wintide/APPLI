@@ -52,7 +52,7 @@ public class Test {
 
         File doc3 = new File("fichier/scenario_"+idSc+".txt");
         Scanner obj4 = new Scanner(doc3);
-        Scenario scenario = new Scenario(intId);
+        Scenario scenario = new Scenario(intId,listeVilles,liste);
         while (obj4.hasNextLine()) {
             String line = obj4.nextLine();
             String[] split = line.split(regex);
@@ -60,14 +60,13 @@ public class Test {
 
         }
 
-        Itineraire itineraire = new Itineraire(scenario,listeVilles,liste);
 
         //System.out.println(itineraire.getScenario());
         //System.out.println(itineraire.getMembres());
         //System.out.println(itineraire.getVilles());
 
-        System.out.println(itineraire.associationMembresVilles());
-        System.out.println(itineraire.trouveVillePassage());
+        System.out.println(scenario.associationMembresVilles());
+        System.out.println(scenario.trouveVillePassage());
 
 
     }
