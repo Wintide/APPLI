@@ -85,7 +85,7 @@ public class Test {
             System.out.println(scenario.calculItinerairePlusCours());
             System.out.println(scenario.calculDistanceTotale(scenario.calculItinerairePlusCours()));
         }
-        else { System.out.println("Option non valide!"); }
+        if (numero != 1 && numero !=2 ) { System.out.println("Option non valide!"); }
 
 
 

@@ -148,8 +148,8 @@ public class Scenario {
         int total = 0;
 
         for (int i = 0; i < itineraire.size() - 1; i++) {
-            String villeA = itineraire.get(i).replace("+", "").replace("-", "");
-            String villeB = itineraire.get(i+1).replace("+", "").replace("-", "");
+            String villeA = extraireNomVille(itineraire.get(i));
+            String villeB = extraireNomVille(itineraire.get(i + 1));
 
             Ville vDepart = villes.getVilleParNom(villeA);
             int distance = vDepart.getDistanceAvec(villeB);
@@ -197,7 +197,7 @@ public class Scenario {
             int distanceMin = Integer.MAX_VALUE;
 
             for (String candidat : queue) {
-                String villeCandidat = candidat.replace("+", "").replace("-", "");
+                String villeCandidat = extraireNomVille(candidat);
                 Ville v = villes.getVilleParNom(villePrecedente);
                 if (v != null) {
                     int dist = v.getDistanceAvec(villeCandidat);
@@ -213,7 +213,8 @@ public class Scenario {
             ordreValide.add(meilleurSommet);
 
             // Mise à jour ville précédente
-            villePrecedente = meilleurSommet.replace("+", "").replace("-", "");
+            villePrecedente = extraireNomVille(meilleurSommet);
+
 
             // Décrémenter degré des voisins
             for (String voisin : graphe.getOrDefault(meilleurSommet, new ArrayList<>())) {
@@ -228,6 +229,14 @@ public class Scenario {
 
         return ordreValide;
     }
+
+    private String extraireNomVille(String sommet) {
+        if (sommet.endsWith("+") || sommet.endsWith("-")) {
+            return sommet.substring(0, sommet.length() - 1);
+        }
+        return sommet;
+    }
+
 
 
 
