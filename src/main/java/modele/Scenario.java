@@ -98,14 +98,12 @@ public class Scenario {
         ArrayList<Pair<String,String>> contraintes = this.associationMembresVilles();
         resultat.add("Vélizy+");
 
-        // Étape 1 : extraire les sommets
         HashSet<String> sommets = new HashSet<>();
         for (Pair<String, String> arc : contraintes) {
             sommets.add(arc.getKey());
             sommets.add(arc.getValue());
         }
 
-        // Étape 2 : construire le graphe
         HashMap<String, ArrayList<String>> graphe = new HashMap<>();
         HashMap<String, Integer> degreEntree = new HashMap<>();
 
@@ -119,7 +117,6 @@ public class Scenario {
             degreEntree.put(arc.getValue(), degreEntree.get(arc.getValue()) + 1);
         }
 
-        // Étape 3 : tri topologique (Kahn)
         ArrayList<String> queue = new ArrayList<>();
         for (String s : sommets) {
             if (degreEntree.get(s) == 0) {
@@ -156,7 +153,7 @@ public class Scenario {
 
             if (distance == Integer.MAX_VALUE) {
                 System.out.println("Pas de liaison entre " + villeA + " et " + villeB);
-                continue; // ou break si bloquant
+                continue;
             }
 
             total += distance;
@@ -168,7 +165,6 @@ public class Scenario {
     public ArrayList<String> calculItinerairePlusCours() {
         ArrayList<Pair<String, String>> contraintes = this.associationMembresVilles();
 
-        // Sommets, graphe et degrés
         HashSet<String> sommets = new HashSet<>();
         HashMap<String, ArrayList<String>> graphe = new HashMap<>();
         HashMap<String, Integer> degreEntree = new HashMap<>();
@@ -192,7 +188,7 @@ public class Scenario {
         ordreValide.add("Vélizy+");
 
         while (!queue.isEmpty()) {
-            // Trouver le sommet dans queue le plus proche de villePrecedente
+
             String meilleurSommet = null;
             int distanceMin = Integer.MAX_VALUE;
 
@@ -208,15 +204,12 @@ public class Scenario {
                 }
             }
 
-            // Retirer meilleur sommet et l'ajouter à l'ordre
             queue.remove(meilleurSommet);
             ordreValide.add(meilleurSommet);
 
-            // Mise à jour ville précédente
             villePrecedente = extraireNomVille(meilleurSommet);
 
 
-            // Décrémenter degré des voisins
             for (String voisin : graphe.getOrDefault(meilleurSommet, new ArrayList<>())) {
                 degreEntree.put(voisin, degreEntree.get(voisin) - 1);
                 if (degreEntree.get(voisin) == 0) {
