@@ -43,14 +43,18 @@ public class Test {
             listeVilles.ajoutVilles(ville);
 
         }
+        System.out.println("Scenarios disponibles : ");
+        for (File fichier : new File("scenario").listFiles()) {
+            System.out.println(fichier.getName());
+        }
 
         Scanner numScenario = new Scanner(System.in);
-        System.out.println("Entrer le numéro du scenario");
+        System.out.println("Entrer le numéro du scenario : ");
 
         String idSc = numScenario.nextLine();
         int intId = Integer.parseInt(idSc);
 
-        File doc3 = new File("fichier/scenario_"+idSc+".txt");
+        File doc3 = new File("scenario/scenario_"+idSc+".txt");
         Scanner obj4 = new Scanner(doc3);
         Scenario scenario = new Scenario(intId,listeVilles,liste);
         while (obj4.hasNextLine()) {
@@ -65,8 +69,25 @@ public class Test {
         //System.out.println(itineraire.getMembres());
         //System.out.println(itineraire.getVilles());
 
-        System.out.println(scenario.associationMembresVilles());
-        System.out.println(scenario.trouveVillePassage());
+        //System.out.println(scenario.associationMembresVilles());
+        //System.out.println(scenario.trouveVillePassage());
+
+        System.out.println("Type d'itineraire :\n 1-N'importe quel itineraire \n 2-Itineraire le plus court");
+        Scanner decisionCalcul = new Scanner(System.in);
+        String num = decisionCalcul.nextLine();
+        int numero = Integer.parseInt(num);
+
+        if (numero == 1) {
+            System.out.println(scenario.calculItineraire());
+            System.out.println(scenario.calculDistanceTotale(scenario.calculItineraire()));
+        }
+        if (numero == 2) {
+            System.out.println(scenario.calculItinerairePlusCours());
+            System.out.println(scenario.calculDistanceTotale(scenario.calculItinerairePlusCours()));
+        }
+        else { System.out.println("Option non valide!"); }
+
+
 
 
     }

@@ -1,33 +1,29 @@
 package modele;
 
-import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class Ville {
     private String chNomVille;
-    private ArrayList<TreeMap<String, Integer>> chDistances;
+    private TreeMap<String, Integer> chDistances; // plus simple et efficace
 
     public Ville(String chNomVille) {
         this.chNomVille = chNomVille;
-        this.chDistances = new ArrayList<TreeMap<String,Integer>>();
+        this.chDistances = new TreeMap<>();
     }
 
-    public void ajout(String parNomVille,Integer parDistance){
-        TreeMap<String, Integer> doublon = new TreeMap<>();
-        doublon.put(parNomVille, parDistance);
-        chDistances.add(doublon);
+    public void ajout(String parNomVille, Integer parDistance){
+        chDistances.put(parNomVille, parDistance); // mapping direct
     }
 
-    public String toString(){
-        String retour = new String();
-        retour += chNomVille + " : ";
-        for (TreeMap<String, Integer> doublon : chDistances) {
-            retour += doublon.toString();
-        }
-        return retour;
+    public Integer getDistanceAvec(String autreVille) {
+        return chDistances.getOrDefault(autreVille, Integer.MAX_VALUE); // ou null selon ton choix
     }
 
     public String getChNomVille() {
         return chNomVille;
+    }
+
+    public String toString(){
+        return chNomVille + " : " + chDistances.toString();
     }
 }

@@ -25,4 +25,14 @@ public class ListeVilles {
         }
         return res;
     }
+
+    public Ville getVilleParNom(String nom) {
+        for (Ville ville : chVilles) {
+            if (ville.getChNomVille().equals(nom)) {
+                return ville;
+            }
+        }
+        return null; // ou lève une exception si nécessaire
+    }
+
 }
