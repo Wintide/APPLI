@@ -1,15 +1,19 @@
 package modele;
 
 import javafx.util.Pair;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+
+import java.util.*;
 
 public class Scenario {
     private int id;
     private ArrayList<Pair<String,String>> scenarios;
     private ListeVilles villes;
     private ListeMembres membres;
+    private int nbTotalChemins; // compteur global
+
+    public int getNbTotalChemins() {
+        return nbTotalChemins;
+    }
 
     public Scenario(int parId, ListeVilles parVilles, ListeMembres parMembres) {
         scenarios = new ArrayList<>();
@@ -162,67 +166,6 @@ public class Scenario {
         return total;
     }
 
-    public ArrayList<String> calculItinerairePlusCours() {
-        ArrayList<Pair<String, String>> contraintes = this.associationMembresVilles();
-
-        HashSet<String> sommets = new HashSet<>();
-        HashMap<String, ArrayList<String>> graphe = new HashMap<>();
-        HashMap<String, Integer> degreEntree = new HashMap<>();
-
-        for (Pair<String, String> arc : contraintes) {
-            sommets.add(arc.getKey());
-            sommets.add(arc.getValue());
-            graphe.computeIfAbsent(arc.getKey(), k -> new ArrayList<>()).add(arc.getValue());
-            degreEntree.put(arc.getValue(), degreEntree.getOrDefault(arc.getValue(), 0) + 1);
-            degreEntree.putIfAbsent(arc.getKey(), 0);
-        }
-
-        ArrayList<String> ordreValide = new ArrayList<>();
-        ArrayList<String> queue = new ArrayList<>();
-
-        for (String s : sommets) {
-            if (degreEntree.getOrDefault(s, 0) == 0) queue.add(s);
-        }
-
-        String villePrecedente = "Vélizy";
-        ordreValide.add("Vélizy+");
-
-        while (!queue.isEmpty()) {
-
-            String meilleurSommet = null;
-            int distanceMin = Integer.MAX_VALUE;
-
-            for (String candidat : queue) {
-                String villeCandidat = extraireNomVille(candidat);
-                Ville v = villes.getVilleParNom(villePrecedente);
-                if (v != null) {
-                    int dist = v.getDistanceAvec(villeCandidat);
-                    if (dist < distanceMin) {
-                        distanceMin = dist;
-                        meilleurSommet = candidat;
-                    }
-                }
-            }
-
-            queue.remove(meilleurSommet);
-            ordreValide.add(meilleurSommet);
-
-            villePrecedente = extraireNomVille(meilleurSommet);
-
-
-            for (String voisin : graphe.getOrDefault(meilleurSommet, new ArrayList<>())) {
-                degreEntree.put(voisin, degreEntree.get(voisin) - 1);
-                if (degreEntree.get(voisin) == 0) {
-                    queue.add(voisin);
-                }
-            }
-        }
-
-        ordreValide.add("Vélizy-");
-
-        return ordreValide;
-    }
-
     private String extraireNomVille(String sommet) {
         if (sommet.endsWith("+") || sommet.endsWith("-")) {
             return sommet.substring(0, sommet.length() - 1);
@@ -230,9 +173,135 @@ public class Scenario {
         return sommet;
     }
 
+    public ArrayList<ArrayList<String>> calculKMeilleursItineraires(int k) {
+        ArrayList<ArrayList<String>> resultats = new ArrayList<>();
+        nbTotalChemins = 0; // reset du compteur
+
+        ArrayList<Pair<String, String>> contraintes = this.associationMembresVilles();
+
+        // 1. Sommets et graphe
+        Set<String> sommets = new HashSet<>();
+        Map<String, List<String>> graphe = new HashMap<>();
+        Map<String, Integer> degreEntree = new HashMap<>();
+
+        for (Pair<String, String> arc : contraintes) {
+            sommets.add(arc.getKey());
+            sommets.add(arc.getValue());
+        }
+
+        for (String s : sommets) {
+            graphe.put(s, new ArrayList<>());
+            degreEntree.put(s, 0);
+        }
+
+        for (Pair<String, String> arc : contraintes) {
+            graphe.get(arc.getKey()).add(arc.getValue());
+            degreEntree.put(arc.getValue(), degreEntree.get(arc.getValue()) + 1);
+        }
+
+        // 2. PriorityQueue pour garder les k meilleurs (ordre croissant de distance)
+        PriorityQueue<ArrayList<String>> meilleurs = new PriorityQueue<>(
+                k, Comparator.comparingInt(this::calculerDistanceTotale).reversed()
+        );
+
+        // 3. Noeuds sans prédécesseur (in-degree == 0)
+        List<String> candidats = new ArrayList<>();
+        for (String s : sommets) {
+            if (degreEntree.get(s) == 0) {
+                candidats.add(s);
+            }
+        }
+
+        backtrack(new ArrayList<>(), candidats, graphe, new HashMap<>(degreEntree), meilleurs, k);
+
+        // 4. Convertir PriorityQueue en liste triée
+        ArrayList<ArrayList<String>> trie = new ArrayList<>(meilleurs);
+        trie.sort(Comparator.comparingInt(this::calculerDistanceTotale));
+        System.out.println(trie);
+
+        // Filtrage par distances différentes
+        ArrayList<ArrayList<String>> resultatsFinal = new ArrayList<>();
+        Set<Integer> distancesUnicites = new HashSet<>();
+
+        for (ArrayList<String> itineraire : trie) {
+            int distance = calculerDistanceTotale(itineraire);
+            if (!distancesUnicites.contains(distance)) {
+                resultatsFinal.add(itineraire);
+                distancesUnicites.add(distance);
+            }
+            if (resultatsFinal.size() >= k) break;
+        }
 
 
+        return resultatsFinal;
+
+    }
+
+    private void backtrack(ArrayList<String> chemin, List<String> candidats,
+                           Map<String, List<String>> graphe, Map<String, Integer> degreEntree,
+                           PriorityQueue<ArrayList<String>> meilleurs, int k) {
+        if (chemin.size() == degreEntree.size()) {
+            nbTotalChemins++;
+
+            ArrayList<String> complet = new ArrayList<>();
+            complet.add("Vélizy+");
+            complet.addAll(chemin);
+            complet.add("Vélizy-");
+
+            if (meilleurs.size() < k) {
+                meilleurs.add(new ArrayList<>(complet));
+            } else {
+                int distNouveau = calculerDistanceTotale(complet);
+                int distMax = calculerDistanceTotale(meilleurs.peek());
+                if (distNouveau < distMax) {
+                    meilleurs.poll();
+                    meilleurs.add(new ArrayList<>(complet));
+                }
+            }
+            return;
+        }
+
+        for (int i = 0; i < candidats.size(); i++) {
+            String courant = candidats.get(i);
+            chemin.add(courant);
+
+            List<String> nouveauxCandidats = new ArrayList<>(candidats);
+            nouveauxCandidats.remove(i);
+
+            for (String voisin : graphe.get(courant)) {
+                degreEntree.put(voisin, degreEntree.get(voisin) - 1);
+                if (degreEntree.get(voisin) == 0) {
+                    nouveauxCandidats.add(voisin);
+                }
+            }
+
+            backtrack(chemin, nouveauxCandidats, graphe, new HashMap<>(degreEntree), meilleurs, k);
+
+            chemin.remove(chemin.size() - 1);
+
+            for (String voisin : graphe.get(courant)) {
+                degreEntree.put(voisin, degreEntree.get(voisin) + 1);
+            }
+        }
+    }
 
 
+    public int calculerDistanceTotale(ArrayList<String> itineraire) {
+        int total = 0;
+
+        for (int i = 0; i < itineraire.size() - 1; i++) {
+            String villeA = extraireNomVille(itineraire.get(i));
+            String villeB = extraireNomVille(itineraire.get(i + 1));
+
+            Ville villeSource = villes.getVilleParNom(villeA);
+            if (villeSource != null && villeSource.getChDistances().containsKey(villeB)) {
+                total += villeSource.getChDistances().get(villeB);
+            } else {
+                total += Integer.MAX_VALUE / 2; // pénalité si pas de chemin connu
+            }
+        }
+
+        return total;
+    }
 
 }

@@ -24,4 +24,23 @@ public class ListeMembres {
     public ArrayList<Membre> getChMembres() {
         return chMembres;
     }
+
+    public Membre trouverParNom(String nom) {
+        for (Membre m : chMembres) {
+            if (m.getChNom().equalsIgnoreCase(nom)) {
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public String getVilleParNom(String nomMembre) {
+        for (Membre membre : chMembres) {
+            if (membre.getChNom().equals(nomMembre)) {
+                return membre.getChVille();
+            }
+        }
+        return null; // ou "Inconnue"
+    }
+
 }

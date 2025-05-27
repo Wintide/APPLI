@@ -65,14 +65,12 @@ public class Test {
         }
 
 
-        //System.out.println(itineraire.getScenario());
-        //System.out.println(itineraire.getMembres());
-        //System.out.println(itineraire.getVilles());
 
-        //System.out.println(scenario.associationMembresVilles());
+
+        System.out.println(scenario.associationMembresVilles());
         //System.out.println(scenario.trouveVillePassage());
 
-        System.out.println("Type d'itineraire :\n 1-N'importe quel itineraire \n 2-Itineraire le plus court");
+        System.out.println("Type d'itineraire :\n 1-N'importe quel itineraire \n 2-Itineraire le plus court \n 3-k meilleurs solutions" );
         Scanner decisionCalcul = new Scanner(System.in);
         String num = decisionCalcul.nextLine();
         int numero = Integer.parseInt(num);
@@ -82,10 +80,28 @@ public class Test {
             System.out.println(scenario.calculDistanceTotale(scenario.calculItineraire()));
         }
         if (numero == 2) {
-            System.out.println(scenario.calculItinerairePlusCours());
-            System.out.println(scenario.calculDistanceTotale(scenario.calculItinerairePlusCours()));
+            ArrayList<ArrayList<String>> meilleurs = scenario.calculKMeilleursItineraires(1);
+            System.out.println("Meilleurs itinéraires :");
+            for (ArrayList<String> chemin : meilleurs) {
+                System.out.println(chemin + " -> " + scenario.calculerDistanceTotale(chemin) + " km");
+            }
+            System.out.println("Nombre total de chemins explorés : " + scenario.getNbTotalChemins());
+
+
         }
-        if (numero != 1 && numero !=2 ) { System.out.println("Option non valide!"); }
+        if (numero == 3) {
+            Scanner Kscan = new Scanner(System.in);
+            String Kstring = Kscan.nextLine();
+            int K = Integer.parseInt(Kstring);
+            ArrayList<ArrayList<String>> meilleurs = scenario.calculKMeilleursItineraires(K);
+            System.out.println("Meilleurs itinéraires :");
+            for (ArrayList<String> chemin : meilleurs) {
+                System.out.println(chemin + " -> " + scenario.calculerDistanceTotale(chemin) + " km");
+            }
+            System.out.println("Nombre total de chemins explorés : " + scenario.getNbTotalChemins());
+
+        }
+        if (numero != 1 && numero !=2 && numero != 3) { System.out.println("Option non valide!"); }
 
 
 

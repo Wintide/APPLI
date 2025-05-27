@@ -26,4 +26,9 @@ public class Ville {
     public String toString(){
         return chNomVille + " : " + chDistances.toString();
     }
+
+    public TreeMap<String, Integer> getChDistances() {
+        return chDistances;
+    }
+
 }

@@ -32,7 +32,18 @@ public class ListeVilles {
                 return ville;
             }
         }
-        return null; // ou lève une exception si nécessaire
+        return null;
     }
+
+    public int getDistance(String villeA, String villeB) {
+        for (Ville ville : chVilles) {
+            if (ville.getChNomVille().equals(villeA)) {
+                Integer dist = ville.getChDistances().get(villeB);
+                if (dist != null) return dist;
+            }
+        }
+        return Integer.MAX_VALUE;
+    }
+
 
 }
