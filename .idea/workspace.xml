@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baa411ab-9796-4abc-81d2-eea7f0738795" name="Changes" comment="Ptit changement">
-      <change afterPath="$PROJECT_DIR$/css/appli.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controleur/Controleur.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vue/Appli.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vue/FenetreScenario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vue/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vue/Parcours.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vue/TableCorrespondance.java" afterDir="false" />
+    <list default="true" id="baa411ab-9796-4abc-81d2-eea7f0738795" name="Changes" comment="Gros Changement">
+      <change afterPath="$PROJECT_DIR$/src/main/java/modele/LigneKmeilleurs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/ListeMembres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/ListeMembres.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/ListeVilles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/ListeVilles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/Membre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Membre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controleur/Controleur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/modele/Scenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Scenario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/modele/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/Ville.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Ville.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vue/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vue/Parcours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/Parcours.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vue/TableCorrespondance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/TableCorrespondance.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,28 +60,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ClientGraphe.executor": "Run",
-    "Application.ClientGrapheOriente.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Test.executor": "Run",
-    "Application.TestScenarios.executor": "Run",
-    "Application.TestVille.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/thoma/OneDrive/Bureau/projet2",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ClientGraphe.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ClientGrapheOriente.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestScenarios.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestVille.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/thoma/OneDrive/Bureau/projet2&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\thoma\OneDrive\Bureau\DEV\Intellij\APPLI\scenario" />
@@ -124,7 +117,8 @@
       <workItem from="1747660916667" duration="2000" />
       <workItem from="1747813220015" duration="7827000" />
       <workItem from="1748284322100" duration="3209000" />
-      <workItem from="1748339986487" duration="17420000" />
+      <workItem from="1748339986487" duration="36171000" />
+      <workItem from="1748416102659" duration="8732000" />
     </task>
     <task id="LOCAL-00001" summary="Création du projets">
       <option name="closed" value="true" />
@@ -222,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747302828135</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Gros Changement">
+      <option name="closed" value="true" />
+      <created>1748359798362</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1748359798362</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +242,7 @@
     <MESSAGE value="Calcul des itineraire basique et heuristique" />
     <MESSAGE value="Correction des erreurs avec les &quot;-&quot;" />
     <MESSAGE value="Ptit changement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ptit changement" />
+    <MESSAGE value="Gros Changement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gros Changement" />
   </component>
 </project>

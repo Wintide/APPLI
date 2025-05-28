@@ -32,64 +32,24 @@ public class TableCorrespondance extends VBox {
         table.getColumns().addAll(vendeur, acheteur, distance);
 
         this.getChildren().add(table);
+        this.setPrefWidth(500);
     }
 
     public void miseAJour(String parScenario) throws FileNotFoundException {
         table.getItems().clear();
 
-        // Chemins des fichiers
-        File fichierScenario = new File("scenario/"+ parScenario);
-        File fichierMembres = new File("fichier/membres_APPLI.txt");
-        File fichierDistances = new File("fichier/distances.txt");
 
-        // Charger les membres
-        ListeMembres listeMembres = new ListeMembres();
-        Scanner scanMembres = new Scanner(fichierMembres);
-        String regex = "[,\\.\\s]";
-        while (scanMembres.hasNextLine()) {
-            String[] tokens = scanMembres.nextLine().split(regex);
-            if (tokens.length >= 2)
-                listeMembres.addMembre(new Membre(tokens[0], tokens[1]));
-        }
+        Scenario scenario = new Scenario(parScenario);
 
-        // Charger les villes et distances
-        ListeVilles listeVilles = new ListeVilles();
-        Scanner scanDist = new Scanner(fichierDistances);
-        ArrayList<String> nomsVilles = new ArrayList<>();
-        ArrayList<String[]> lignesDistances = new ArrayList<>();
-        while (scanDist.hasNextLine()) {
-            String[] tokens = scanDist.nextLine().split(regex);
-            nomsVilles.add(tokens[0]);
-            lignesDistances.add(tokens);
-        }
-        for (String[] ligne : lignesDistances) {
-            Ville ville = new Ville(ligne[0]);
-            for (int i = 1; i < ligne.length; i++) {
-                ville.ajout(nomsVilles.get(i - 1), Integer.parseInt(ligne[i]));
-            }
-            listeVilles.ajoutVilles(ville);
-        }
-
-        // Charger le scénario
-        String idStr = parScenario.replaceAll("[^0-9]", ""); // garde uniquement les chiffres
-        int id = Integer.parseInt(idStr);
-
-        Scenario scenario = new Scenario(id, listeVilles, listeMembres);
-        Scanner scanScenario = new Scanner(fichierScenario);
-        while (scanScenario.hasNextLine()) {
-            String[] tokens = scanScenario.nextLine().split(regex);
-            if (tokens.length >= 3)
-                scenario.ajout(tokens[0], tokens[2]);
-        }
 
         // Remplissage du tableau
         for (Pair<String, String> transaction : scenario.getScenarios()) {
             String vendeurNom = transaction.getKey();
             String acheteurNom = transaction.getValue();
 
-            String villeVendeur = listeMembres.getVilleParNom(vendeurNom);
-            String villeAcheteur = listeMembres.getVilleParNom(acheteurNom);
-            int distance = listeVilles.getDistance(villeVendeur, villeAcheteur);
+            String villeVendeur = scenario.getMembres().getVilleParNom(vendeurNom);
+            String villeAcheteur = scenario.getMembres().getVilleParNom(acheteurNom);
+            int distance = scenario.getVilles().getDistance(villeVendeur, villeAcheteur);
 
             LigneCorrespondance ligne = new LigneCorrespondance(
                     vendeurNom, villeVendeur, acheteurNom, villeAcheteur, distance

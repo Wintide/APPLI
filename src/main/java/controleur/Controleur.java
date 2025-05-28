@@ -3,6 +3,7 @@ package controleur;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import vue.Appli;
 import vue.FenetreScenario;
 import vue.TableCorrespondance;
@@ -16,15 +17,19 @@ public class Controleur implements EventHandler {
         FenetreScenario fenetreScenario = Appli.getFenetreScenario();
 
         if (event.getSource() instanceof MenuItem) {
-            //System.out.println(((MenuItem) event.getSource()).getText());
+
             String scenario = ((MenuItem) event.getSource()).getText();
             try {
+
                 fenetreScenario.getTableCorrespondance().miseAJour(scenario);
-                fenetreScenario.getParcours().setChMessageSelectionScenario(scenario);
+                fenetreScenario.getParcours().miseAJour(scenario);
+
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
+
+
 
 
 

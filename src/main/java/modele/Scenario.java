@@ -2,6 +2,8 @@ package modele;
 
 import javafx.util.Pair;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Scenario {
@@ -15,11 +17,108 @@ public class Scenario {
         return nbTotalChemins;
     }
 
-    public Scenario(int parId, ListeVilles parVilles, ListeMembres parMembres) {
+    public Scenario(int parId) throws FileNotFoundException {
+        File doc = new File("fichier/membres_APPLI.txt");
+        Scanner obj = new Scanner(doc);
+        String regex = "[,\\.\\s]";
+        ListeMembres liste = new ListeMembres();
+
+        while (obj.hasNextLine()) {
+
+            String[] myArray = obj.nextLine().split(regex);
+            Membre membre = new Membre(myArray[0], myArray[1]);
+            liste.addMembre(membre);
+
+        }
+
+        File doc2 = new File("fichier/distances.txt");
+        Scanner obj2 = new Scanner(doc2);
+        ArrayList<String> list = new ArrayList<String>();
+        while (obj2.hasNextLine()) {
+            String line = obj2.nextLine();
+            String[] split = line.split(regex);
+            list.add(split[0]);
+        }
+        ListeVilles listeVilles = new ListeVilles();
+        Scanner obj3 = new Scanner(doc2);
+        while (obj3.hasNextLine()) {
+
+            String[] myArray = obj3.nextLine().split(regex);
+            Ville ville = new Ville(myArray[0]);
+
+            for (int i = 1; i < myArray.length; i++) {
+                int dist = Integer.parseInt(myArray[i]);
+                ville.ajout(list.get(i - 1),dist);
+            }
+            listeVilles.ajoutVilles(ville);
+
+        }
+
         scenarios = new ArrayList<>();
         id = parId;
-        villes = parVilles;
-        membres = parMembres;
+        villes = listeVilles;
+        membres = liste;
+
+        remplissageScenario();
+    }
+
+    public Scenario(String parScenario) throws FileNotFoundException {
+        File doc = new File("fichier/membres_APPLI.txt");
+        Scanner obj = new Scanner(doc);
+        String regex = "[,\\.\\s]";
+        ListeMembres liste = new ListeMembres();
+
+        while (obj.hasNextLine()) {
+
+            String[] myArray = obj.nextLine().split(regex);
+            Membre membre = new Membre(myArray[0], myArray[1]);
+            liste.addMembre(membre);
+
+        }
+
+        File doc2 = new File("fichier/distances.txt");
+        Scanner obj2 = new Scanner(doc2);
+        ArrayList<String> list = new ArrayList<String>();
+        while (obj2.hasNextLine()) {
+            String line = obj2.nextLine();
+            String[] split = line.split(regex);
+            list.add(split[0]);
+        }
+        ListeVilles listeVilles = new ListeVilles();
+        Scanner obj3 = new Scanner(doc2);
+        while (obj3.hasNextLine()) {
+
+            String[] myArray = obj3.nextLine().split(regex);
+            Ville ville = new Ville(myArray[0]);
+
+            for (int i = 1; i < myArray.length; i++) {
+                int dist = Integer.parseInt(myArray[i]);
+                ville.ajout(list.get(i - 1),dist);
+            }
+            listeVilles.ajoutVilles(ville);
+
+        }
+        String idStr = parScenario.replaceAll("[^0-9]", "");
+        int Nid = Integer.parseInt(idStr);
+
+        scenarios = new ArrayList<>();
+        id = Nid;
+        villes = listeVilles;
+        membres = liste;
+
+        remplissageScenario();
+    }
+
+    public void remplissageScenario() throws FileNotFoundException {
+        String regex = "[,\\.\\s]";
+        File doc = new File("scenario/scenario_"+id+".txt");
+        Scanner scan = new Scanner(doc);
+        while (scan.hasNextLine()) {
+            String line = scan.nextLine();
+            String[] split = line.split(regex);
+            this.ajout(split[0], split[2]);
+
+        }
     }
 
     public int getId() {
@@ -145,27 +244,6 @@ public class Scenario {
         return resultat;
     }
 
-    public int calculDistanceTotale(ArrayList<String> itineraire) {
-        int total = 0;
-
-        for (int i = 0; i < itineraire.size() - 1; i++) {
-            String villeA = extraireNomVille(itineraire.get(i));
-            String villeB = extraireNomVille(itineraire.get(i + 1));
-
-            Ville vDepart = villes.getVilleParNom(villeA);
-            int distance = vDepart.getDistanceAvec(villeB);
-
-            if (distance == Integer.MAX_VALUE) {
-                System.out.println("Pas de liaison entre " + villeA + " et " + villeB);
-                continue;
-            }
-
-            total += distance;
-        }
-
-        return total;
-    }
-
     private String extraireNomVille(String sommet) {
         if (sommet.endsWith("+") || sommet.endsWith("-")) {
             return sommet.substring(0, sommet.length() - 1);
@@ -174,7 +252,6 @@ public class Scenario {
     }
 
     public ArrayList<ArrayList<String>> calculKMeilleursItineraires(int k) {
-        ArrayList<ArrayList<String>> resultats = new ArrayList<>();
         nbTotalChemins = 0; // reset du compteur
 
         ArrayList<Pair<String, String>> contraintes = this.associationMembresVilles();
@@ -212,7 +289,10 @@ public class Scenario {
             }
         }
 
-        backtrack(new ArrayList<>(), candidats, graphe, new HashMap<>(degreEntree), meilleurs, k);
+        Set<Integer> distancesVues = new HashSet<>();
+
+        backtrack(new ArrayList<>(), candidats, graphe, new HashMap<>(degreEntree), meilleurs, k, distancesVues);
+
 
         // 4. Convertir PriorityQueue en liste triée
         ArrayList<ArrayList<String>> trie = new ArrayList<>(meilleurs);
@@ -239,27 +319,36 @@ public class Scenario {
 
     private void backtrack(ArrayList<String> chemin, List<String> candidats,
                            Map<String, List<String>> graphe, Map<String, Integer> degreEntree,
-                           PriorityQueue<ArrayList<String>> meilleurs, int k) {
+                           PriorityQueue<ArrayList<String>> meilleurs, int k, Set<Integer> distancesVues) {
+
         if (chemin.size() == degreEntree.size()) {
             nbTotalChemins++;
+            if (nbTotalChemins%1000000 == 0) {
+                System.out.println(nbTotalChemins);
+            }
 
             ArrayList<String> complet = new ArrayList<>();
             complet.add("Vélizy+");
             complet.addAll(chemin);
             complet.add("Vélizy-");
 
+            int distNouveau = calculerDistanceTotale(complet);
+            if (distancesVues.contains(distNouveau)) return;
+
             if (meilleurs.size() < k) {
                 meilleurs.add(new ArrayList<>(complet));
+                distancesVues.add(distNouveau);
             } else {
-                int distNouveau = calculerDistanceTotale(complet);
                 int distMax = calculerDistanceTotale(meilleurs.peek());
                 if (distNouveau < distMax) {
                     meilleurs.poll();
                     meilleurs.add(new ArrayList<>(complet));
+                    distancesVues.add(distNouveau);
                 }
             }
             return;
         }
+
 
         for (int i = 0; i < candidats.size(); i++) {
             String courant = candidats.get(i);
@@ -275,7 +364,7 @@ public class Scenario {
                 }
             }
 
-            backtrack(chemin, nouveauxCandidats, graphe, new HashMap<>(degreEntree), meilleurs, k);
+            backtrack(chemin, nouveauxCandidats, graphe, new HashMap<>(degreEntree), meilleurs, k, distancesVues);
 
             chemin.remove(chemin.size() - 1);
 
@@ -303,5 +392,7 @@ public class Scenario {
 
         return total;
     }
+
+
 
 }
