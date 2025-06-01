@@ -1,12 +1,27 @@
 package modele;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.TreeSet;
 
 public class ListeMembres {
     private ArrayList<Membre> chMembres;
-    public ListeMembres() {
+    public ListeMembres() throws FileNotFoundException {
         chMembres = new ArrayList<Membre>();
+        File doc = new File("fichier/membres_APPLI.txt");
+        Scanner obj = new Scanner(doc);
+        String regex = "[,\\.\\s]";
+
+        while (obj.hasNextLine()) {
+
+            String[] myArray = obj.nextLine().split(regex);
+            Membre membre = new Membre(myArray[0], myArray[1]);
+            chMembres.add(membre);
+
+        }
+
     }
 
     public void addMembre(Membre m) {

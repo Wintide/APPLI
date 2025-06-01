@@ -3,6 +3,7 @@ package vue;
 import controleur.Controleur;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import java.io.File;
@@ -12,11 +13,13 @@ public class Appli extends VBox {
     private static Controleur controleur;
     private static FenetreScenario fenetreScenario;
     private static FenetreCreation fenetreCreation;
+    private static ScrollPane fenetreCreationScrollPane;
 
     public Appli() {
         controleur = new Controleur();
         fenetreScenario = new FenetreScenario();
         fenetreCreation = new FenetreCreation();
+        fenetreCreationScrollPane = new ScrollPane(fenetreCreation);
 
         MenuBar menuBar = new MenuBar();
         Menu scenario = new Menu("Scenario");
@@ -32,22 +35,20 @@ public class Appli extends VBox {
             scenario.getItems().add(item);
         }
 
+        MenuItem itemCreation = new MenuItem("Creer un scenario");
+        creation.getItems().add(itemCreation);
+        itemCreation.addEventHandler(ActionEvent.ACTION, new Controleur());
+
         MenuItem itemQuitter = new MenuItem("Quitter");
         quitter.getItems().addAll(itemQuitter);
 
-        itemQuitter.setOnAction(event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Quitter l'application ?");
-            alert.setHeaderText("Êtes-vous certain de vouloir quitter l'application ?");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                System.exit(0);
-            }
-        });
+        itemQuitter.addEventHandler(ActionEvent.ACTION, new Controleur());
 
-        fenetreCreation.setVisible(false);
+        fenetreCreationScrollPane.setVisible(false);
+        StackPane contenu = new StackPane();
+        contenu.getChildren().addAll(fenetreScenario, fenetreCreationScrollPane);
+        this.getChildren().addAll(menuBar, contenu);
 
-        this.getChildren().addAll(menuBar,fenetreScenario,fenetreCreation);
     }
 
     public static Controleur getControleur() { return controleur; }
@@ -55,5 +56,8 @@ public class Appli extends VBox {
     public static FenetreScenario getFenetreScenario() { return fenetreScenario; }
 
     public static FenetreCreation getFenetreCreation() { return fenetreCreation; }
+
+    public static ScrollPane getFenetreCreationScrollPane() { return fenetreCreationScrollPane; }
+
 
 }

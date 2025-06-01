@@ -19,41 +19,9 @@ public class Scenario {
     }
 
     public Scenario(int parId) throws FileNotFoundException {
-        File doc = new File("fichier/membres_APPLI.txt");
-        Scanner obj = new Scanner(doc);
-        String regex = "[,\\.\\s]";
+
         ListeMembres liste = new ListeMembres();
-
-        while (obj.hasNextLine()) {
-
-            String[] myArray = obj.nextLine().split(regex);
-            Membre membre = new Membre(myArray[0], myArray[1]);
-            liste.addMembre(membre);
-
-        }
-
-        File doc2 = new File("fichier/distances.txt");
-        Scanner obj2 = new Scanner(doc2);
-        ArrayList<String> list = new ArrayList<String>();
-        while (obj2.hasNextLine()) {
-            String line = obj2.nextLine();
-            String[] split = line.split(regex);
-            list.add(split[0]);
-        }
         ListeVilles listeVilles = new ListeVilles();
-        Scanner obj3 = new Scanner(doc2);
-        while (obj3.hasNextLine()) {
-
-            String[] myArray = obj3.nextLine().split(regex);
-            Ville ville = new Ville(myArray[0]);
-
-            for (int i = 1; i < myArray.length; i++) {
-                int dist = Integer.parseInt(myArray[i]);
-                ville.ajout(list.get(i - 1),dist);
-            }
-            listeVilles.ajoutVilles(ville);
-
-        }
 
         scenarios = new ArrayList<>();
         id = parId;
@@ -298,7 +266,7 @@ public class Scenario {
         // 4. Convertir PriorityQueue en liste triée
         ArrayList<ArrayList<String>> trie = new ArrayList<>(meilleurs);
         trie.sort(Comparator.comparingInt(this::calculerDistanceTotale));
-        System.out.println(trie);
+        //System.out.println(trie);
 
         // Filtrage par distances différentes
         ArrayList<ArrayList<String>> resultatsFinal = new ArrayList<>();
@@ -342,7 +310,7 @@ public class Scenario {
                     meilleurs.poll();
                     meilleurs.add(new ArrayList<>(complet));
                     for (ArrayList<String> c : meilleurs) {
-                        System.out.println(calculerDistanceTotale(c));
+                        //System.out.println(calculerDistanceTotale(c));
                     }
                     distancesVues.add(distNouveau);
                 }

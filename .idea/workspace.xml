@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baa411ab-9796-4abc-81d2-eea7f0738795" name="Changes" comment="Finissions ihm">
-      <change afterPath="$PROJECT_DIR$/src/main/java/vue/FenetreCreation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/vue/LigneScenario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controleur/Controleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modele/ListeMembres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/ListeMembres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modele/ListeVilles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/ListeVilles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/modele/Scenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Scenario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vue/Appli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/Appli.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vue/FenetreCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/FenetreCreation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vue/LigneScenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/LigneScenario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,8 +91,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26574.91" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26574.91" />
       </set>
     </attachedChunks>
   </component>
@@ -122,6 +124,7 @@
       <workItem from="1748593587781" duration="3371000" />
       <workItem from="1748774270071" duration="424000" />
       <workItem from="1748774710940" duration="359000" />
+      <workItem from="1748775188661" duration="6252000" />
     </task>
     <task id="LOCAL-00001" summary="Création du projets">
       <option name="closed" value="true" />
@@ -235,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748425073766</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Finissions ihm">
+      <option name="closed" value="true" />
+      <created>1748775276925</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1748775276925</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
