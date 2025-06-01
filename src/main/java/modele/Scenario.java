@@ -13,6 +13,7 @@ public class Scenario {
     private ListeMembres membres;
     private int nbTotalChemins; // compteur global
 
+
     public int getNbTotalChemins() {
         return nbTotalChemins;
     }
@@ -320,12 +321,9 @@ public class Scenario {
     private void backtrack(ArrayList<String> chemin, List<String> candidats,
                            Map<String, List<String>> graphe, Map<String, Integer> degreEntree,
                            PriorityQueue<ArrayList<String>> meilleurs, int k, Set<Integer> distancesVues) {
-
+        nbTotalChemins++;
         if (chemin.size() == degreEntree.size()) {
-            nbTotalChemins++;
-            if (nbTotalChemins%1000000 == 0) {
-                System.out.println(nbTotalChemins);
-            }
+
 
             ArrayList<String> complet = new ArrayList<>();
             complet.add("Vélizy+");
@@ -343,16 +341,35 @@ public class Scenario {
                 if (distNouveau < distMax) {
                     meilleurs.poll();
                     meilleurs.add(new ArrayList<>(complet));
+                    for (ArrayList<String> c : meilleurs) {
+                        System.out.println(calculerDistanceTotale(c));
+                    }
                     distancesVues.add(distNouveau);
                 }
             }
             return;
         }
 
+        candidats.sort(Comparator.comparingInt(v -> {
+            String derniereVille = chemin.isEmpty() ? "Vélizy+" : chemin.get(chemin.size() - 1);
+            Ville villeActuelle = villes.getVilleParNom(extraireNomVille(derniereVille));
+            return villeActuelle != null ? villeActuelle.getChDistances().getOrDefault(extraireNomVille(v), Integer.MAX_VALUE / 2) : Integer.MAX_VALUE / 2;
+        }));
 
         for (int i = 0; i < candidats.size(); i++) {
             String courant = candidats.get(i);
             chemin.add(courant);
+
+            ArrayList<String> prefixe = new ArrayList<>();
+            prefixe.add("Vélizy+");
+            prefixe.addAll(chemin);
+            prefixe.add("Vélizy-");
+
+            int distPartielle = calculerDistanceTotale(prefixe);
+            if (meilleurs.size() == k && distPartielle >= calculerDistanceTotale(meilleurs.peek())) {
+                chemin.remove(chemin.size() - 1);
+                continue;
+            }
 
             List<String> nouveauxCandidats = new ArrayList<>(candidats);
             nouveauxCandidats.remove(i);
@@ -367,12 +384,12 @@ public class Scenario {
             backtrack(chemin, nouveauxCandidats, graphe, new HashMap<>(degreEntree), meilleurs, k, distancesVues);
 
             chemin.remove(chemin.size() - 1);
-
             for (String voisin : graphe.get(courant)) {
                 degreEntree.put(voisin, degreEntree.get(voisin) + 1);
             }
         }
     }
+
 
 
     public int calculerDistanceTotale(ArrayList<String> itineraire) {
@@ -392,6 +409,10 @@ public class Scenario {
 
         return total;
     }
+
+
+
+
 
 
 

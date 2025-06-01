@@ -11,15 +11,18 @@ import java.util.Optional;
 public class Appli extends VBox {
     private static Controleur controleur;
     private static FenetreScenario fenetreScenario;
+    private static FenetreCreation fenetreCreation;
 
     public Appli() {
         controleur = new Controleur();
         fenetreScenario = new FenetreScenario();
+        fenetreCreation = new FenetreCreation();
 
         MenuBar menuBar = new MenuBar();
         Menu scenario = new Menu("Scenario");
+        Menu creation = new Menu("Creation");
         Menu quitter = new Menu("Quitter");
-        menuBar.getMenus().addAll(scenario, quitter);
+        menuBar.getMenus().addAll(scenario, creation, quitter);
 
         File fichier = new File("scenario");
 
@@ -42,13 +45,15 @@ public class Appli extends VBox {
             }
         });
 
+        fenetreCreation.setVisible(false);
 
-
-        this.getChildren().addAll(menuBar,fenetreScenario);
+        this.getChildren().addAll(menuBar,fenetreScenario,fenetreCreation);
     }
 
     public static Controleur getControleur() { return controleur; }
 
     public static FenetreScenario getFenetreScenario() { return fenetreScenario; }
+
+    public static FenetreCreation getFenetreCreation() { return fenetreCreation; }
 
 }

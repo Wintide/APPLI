@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baa411ab-9796-4abc-81d2-eea7f0738795" name="Changes" comment="Gros Changement">
-      <change afterPath="$PROJECT_DIR$/src/main/java/modele/LigneKmeilleurs.java" afterDir="false" />
+    <list default="true" id="baa411ab-9796-4abc-81d2-eea7f0738795" name="Changes" comment="Finissions ihm">
+      <change afterPath="$PROJECT_DIR$/src/main/java/vue/FenetreCreation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vue/LigneScenario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controleur/Controleur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/modele/Scenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Scenario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vue/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vue/Parcours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/Parcours.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vue/TableCorrespondance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/TableCorrespondance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vue/Appli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/Appli.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +116,12 @@
       <workItem from="1747813220015" duration="7827000" />
       <workItem from="1748284322100" duration="3209000" />
       <workItem from="1748339986487" duration="36171000" />
-      <workItem from="1748416102659" duration="8732000" />
+      <workItem from="1748416102659" duration="21249000" />
+      <workItem from="1748507479612" duration="4034000" />
+      <workItem from="1748550877988" duration="1400000" />
+      <workItem from="1748593587781" duration="3371000" />
+      <workItem from="1748774270071" duration="424000" />
+      <workItem from="1748774710940" duration="359000" />
     </task>
     <task id="LOCAL-00001" summary="Création du projets">
       <option name="closed" value="true" />
@@ -224,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748359798362</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Finissions ihm">
+      <option name="closed" value="true" />
+      <created>1748425073766</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1748425073766</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,6 +254,7 @@
     <MESSAGE value="Correction des erreurs avec les &quot;-&quot;" />
     <MESSAGE value="Ptit changement" />
     <MESSAGE value="Gros Changement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Gros Changement" />
+    <MESSAGE value="Finissions ihm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finissions ihm" />
   </component>
 </project>
