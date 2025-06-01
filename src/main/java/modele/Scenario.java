@@ -18,20 +18,20 @@ public class Scenario {
         return nbTotalChemins;
     }
 
-    public Scenario(int parId) throws FileNotFoundException {
+    public Scenario(int idScenario) throws FileNotFoundException {
 
         ListeMembres liste = new ListeMembres();
         ListeVilles listeVilles = new ListeVilles();
 
         scenarios = new ArrayList<>();
-        id = parId;
+        id = idScenario;
         villes = listeVilles;
         membres = liste;
 
         remplissageScenario();
     }
 
-    public Scenario(String parScenario) throws FileNotFoundException {
+    public Scenario(String scenario) throws FileNotFoundException {
         File doc = new File("fichier/membres_APPLI.txt");
         Scanner obj = new Scanner(doc);
         String regex = "[,\\.\\s]";
@@ -67,7 +67,7 @@ public class Scenario {
             listeVilles.ajoutVilles(ville);
 
         }
-        String idStr = parScenario.replaceAll("[^0-9]", "");
+        String idStr = scenario.replaceAll("[^0-9]", "");
         int Nid = Integer.parseInt(idStr);
 
         scenarios = new ArrayList<>();
@@ -94,8 +94,8 @@ public class Scenario {
         return id;
     }
 
-    public void ajout(String parSource, String parDestination) {
-        scenarios.add(new Pair<>(parSource, parDestination));
+    public void ajout(String source, String destination) {
+        scenarios.add(new Pair<>(source, destination));
     }
 
     public String toString() {
@@ -120,15 +120,15 @@ public class Scenario {
 
         for (Pair<String,String> carte : this.getScenarios()) {
 
-            for (Membre membre : membres.getChMembres()) {
-                if ((membre.getChNom().compareTo(carte.getKey()) == 0) && (!liste.contains(membre.getChVille()))) {
-                    liste.add(membre.getChVille());
+            for (Membre membre : membres.getlisteDesMembres()) {
+                if ((membre.getnomDuMembre().compareTo(carte.getKey()) == 0) && (!liste.contains(membre.getvilleDeResidence()))) {
+                    liste.add(membre.getvilleDeResidence());
                 }
             }
 
-            for (Membre membre : membres.getChMembres()) {
-                if ((membre.getChNom().compareTo(carte.getValue()) == 0) && (!liste.contains(membre.getChVille()))) {
-                    liste.add(membre.getChVille());
+            for (Membre membre : membres.getlisteDesMembres()) {
+                if ((membre.getnomDuMembre().compareTo(carte.getValue()) == 0) && (!liste.contains(membre.getvilleDeResidence()))) {
+                    liste.add(membre.getvilleDeResidence());
                 }
             }
 
@@ -146,15 +146,15 @@ public class Scenario {
 
         for (Pair<String,String> carte : this.getScenarios()) {
 
-            for (Membre membre : membres.getChMembres()) {
-                if (membre.getChNom().compareTo(carte.getKey()) == 0) {
-                    villeDepart = membre.getChVille();
+            for (Membre membre : membres.getlisteDesMembres()) {
+                if (membre.getnomDuMembre().compareTo(carte.getKey()) == 0) {
+                    villeDepart = membre.getvilleDeResidence();
                 }
             }
 
-            for (Membre membre : membres.getChMembres()) {
-                if (membre.getChNom().compareTo(carte.getValue()) == 0) {
-                    villeArrive = membre.getChVille();
+            for (Membre membre : membres.getlisteDesMembres()) {
+                if (membre.getnomDuMembre().compareTo(carte.getValue()) == 0) {
+                    villeArrive = membre.getvilleDeResidence();
                 }
             }
 
@@ -260,7 +260,7 @@ public class Scenario {
 
         Set<Integer> distancesVues = new HashSet<>();
 
-        backtrack(new ArrayList<>(), candidats, graphe, new HashMap<>(degreEntree), meilleurs, k, distancesVues);
+        triRecursif(new ArrayList<>(), candidats, graphe, new HashMap<>(degreEntree), meilleurs, k, distancesVues);
 
 
         // 4. Convertir PriorityQueue en liste triée
@@ -286,7 +286,7 @@ public class Scenario {
 
     }
 
-    private void backtrack(ArrayList<String> chemin, List<String> candidats,
+    private void triRecursif(ArrayList<String> chemin, List<String> candidats,
                            Map<String, List<String>> graphe, Map<String, Integer> degreEntree,
                            PriorityQueue<ArrayList<String>> meilleurs, int k, Set<Integer> distancesVues) {
         nbTotalChemins++;
@@ -321,7 +321,7 @@ public class Scenario {
         candidats.sort(Comparator.comparingInt(v -> {
             String derniereVille = chemin.isEmpty() ? "Vélizy+" : chemin.get(chemin.size() - 1);
             Ville villeActuelle = villes.getVilleParNom(extraireNomVille(derniereVille));
-            return villeActuelle != null ? villeActuelle.getChDistances().getOrDefault(extraireNomVille(v), Integer.MAX_VALUE / 2) : Integer.MAX_VALUE / 2;
+            return villeActuelle != null ? villeActuelle.getlisteDesDistances().getOrDefault(extraireNomVille(v), Integer.MAX_VALUE / 2) : Integer.MAX_VALUE / 2;
         }));
 
         for (int i = 0; i < candidats.size(); i++) {
@@ -349,7 +349,7 @@ public class Scenario {
                 }
             }
 
-            backtrack(chemin, nouveauxCandidats, graphe, new HashMap<>(degreEntree), meilleurs, k, distancesVues);
+            triRecursif(chemin, nouveauxCandidats, graphe, new HashMap<>(degreEntree), meilleurs, k, distancesVues);
 
             chemin.remove(chemin.size() - 1);
             for (String voisin : graphe.get(courant)) {
@@ -368,8 +368,8 @@ public class Scenario {
             String villeB = extraireNomVille(itineraire.get(i + 1));
 
             Ville villeSource = villes.getVilleParNom(villeA);
-            if (villeSource != null && villeSource.getChDistances().containsKey(villeB)) {
-                total += villeSource.getChDistances().get(villeB);
+            if (villeSource != null && villeSource.getlisteDesDistances().containsKey(villeB)) {
+                total += villeSource.getlisteDesDistances().get(villeB);
             } else {
                 total += Integer.MAX_VALUE / 2; // pénalité si pas de chemin connu
             }

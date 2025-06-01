@@ -3,32 +3,32 @@ package modele;
 import java.util.TreeMap;
 
 public class Ville {
-    private String chNomVille;
-    private TreeMap<String, Integer> chDistances; // plus simple et efficace
+    private String nomVille;
+    private TreeMap<String, Integer> listeDesDistances; // plus simple et efficace
 
-    public Ville(String chNomVille) {
-        this.chNomVille = chNomVille;
-        this.chDistances = new TreeMap<>();
+    public Ville(String nomVille) {
+        this.nomVille = nomVille;
+        this.listeDesDistances = new TreeMap<>();
     }
 
-    public void ajout(String parNomVille, Integer parDistance){
-        chDistances.put(parNomVille, parDistance); // mapping direct
+    public void ajout(String nomVille, Integer distance){
+        listeDesDistances.put(nomVille, distance); // mapping direct
     }
 
     public Integer getDistanceAvec(String autreVille) {
-        return chDistances.getOrDefault(autreVille, Integer.MAX_VALUE); // ou null selon ton choix
+        return listeDesDistances.getOrDefault(autreVille, Integer.MAX_VALUE); // ou null selon ton choix
     }
 
-    public String getChNomVille() {
-        return chNomVille;
+    public String getnomVille() {
+        return nomVille;
     }
 
     public String toString(){
-        return chNomVille + " : " + chDistances.toString();
+        return nomVille + " : " + listeDesDistances.toString();
     }
 
-    public TreeMap<String, Integer> getChDistances() {
-        return chDistances;
+    public TreeMap<String, Integer> getlisteDesDistances() {
+        return listeDesDistances;
     }
 
 }

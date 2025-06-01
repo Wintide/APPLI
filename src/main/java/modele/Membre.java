@@ -1,32 +1,32 @@
 package modele;
 
 public class Membre {
-    private String chNom;
-    private String chVille;
+    private String nomDuMembre;
+    private String villeDeResidence;
 
-    public Membre(String chNom, String chVille) {
-        this.chNom = chNom;
-        this.chVille = chVille;
+    public Membre(String nomDuMembre, String villeDeResidence) {
+        this.nomDuMembre = nomDuMembre;
+        this.villeDeResidence = villeDeResidence;
     }
 
-    public String getChNom() {
-        return chNom;
+    public String getnomDuMembre() {
+        return nomDuMembre;
     }
 
-    public String getChVille() {
-        return chVille;
+    public String getvilleDeResidence() {
+        return villeDeResidence;
     }
 
     public String toString() {
-        return "Nom du membre : " + chNom + ", lieu de résience : " + chVille + "\n";
+        return "Nom du membre : " + nomDuMembre + ", lieu de résience : " + villeDeResidence + "\n";
     }
 
-    public int compareTo(Membre parMembre) {
-        if (this.chNom.compareTo(parMembre.chNom) == 0) {
-            return this.chVille.compareTo(parMembre.chVille);
+    public int compareTo(Membre membre) {
+        if (this.nomDuMembre.compareTo(membre.nomDuMembre) == 0) {
+            return this.villeDeResidence.compareTo(membre.villeDeResidence);
         }
 
-        else return this.chNom.compareTo(parMembre.chNom);
+        else return this.nomDuMembre.compareTo(membre.nomDuMembre);
     }
 
 

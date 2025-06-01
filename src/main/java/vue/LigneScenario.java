@@ -17,9 +17,9 @@ public class LigneScenario extends HBox {
 
         ListeMembres listeMembres = new ListeMembres();
 
-        for (Membre nom : listeMembres.getChMembres()) {
-            listeVendeur.getItems().add(nom.getChNom());
-            listeAcheteur.getItems().add(nom.getChNom());
+        for (Membre nom : listeMembres.getlisteDesMembres()) {
+            listeVendeur.getItems().add(nom.getnomDuMembre());
+            listeAcheteur.getItems().add(nom.getnomDuMembre());
         }
 
         this.getChildren().addAll(vendeur,listeVendeur,acheteur,listeAcheteur);

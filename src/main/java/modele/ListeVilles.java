@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ListeVilles {
-    private ArrayList<Ville> chVilles;
+    private ArrayList<Ville> listeDesVilles;
 
     public ListeVilles() throws FileNotFoundException {
-        chVilles = new ArrayList<>();
+        listeDesVilles = new ArrayList<>();
         String regex = "[,\\.\\s]";
         File doc2 = new File("fichier/distances.txt");
         Scanner obj2 = new Scanner(doc2);
@@ -29,31 +29,31 @@ public class ListeVilles {
                 int dist = Integer.parseInt(myArray[i]);
                 ville.ajout(list.get(i - 1),dist);
             }
-            chVilles.add(ville);
+            listeDesVilles.add(ville);
 
         }
     }
 
-    public ArrayList<Ville> getChVilles() {
-        return chVilles;
+    public ArrayList<Ville> getlisteDesVilles() {
+        return listeDesVilles;
     }
 
     public void ajoutVilles(Ville ville) {
-        chVilles.add(ville);
+        listeDesVilles.add(ville);
     }
 
     @Override
     public String toString() {
         String res = "";
-        for (Ville ville : chVilles) {
+        for (Ville ville : listeDesVilles) {
             res += ville.toString() + "\n";
         }
         return res;
     }
 
     public Ville getVilleParNom(String nom) {
-        for (Ville ville : chVilles) {
-            if (ville.getChNomVille().equals(nom)) {
+        for (Ville ville : listeDesVilles) {
+            if (ville.getnomVille().equals(nom)) {
                 return ville;
             }
         }
@@ -61,9 +61,9 @@ public class ListeVilles {
     }
 
     public int getDistance(String villeA, String villeB) {
-        for (Ville ville : chVilles) {
-            if (ville.getChNomVille().equals(villeA)) {
-                Integer dist = ville.getChDistances().get(villeB);
+        for (Ville ville : listeDesVilles) {
+            if (ville.getnomVille().equals(villeA)) {
+                Integer dist = ville.getlisteDesDistances().get(villeB);
                 if (dist != null) return dist;
             }
         }
