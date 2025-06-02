@@ -8,6 +8,11 @@ import java.util.TreeSet;
 
 public class ListeMembres {
     private ArrayList<Membre> listeDesMembres;
+
+    /**
+     * Constructeur automatique de la classe ListeMembres contenant la liste de touts les membres
+     * @throws FileNotFoundException
+     */
     public ListeMembres() throws FileNotFoundException {
         listeDesMembres = new ArrayList<Membre>();
         File doc = new File("fichier/membres_APPLI.txt");
@@ -24,10 +29,10 @@ public class ListeMembres {
 
     }
 
-    public void addMembre(Membre membre) {
-        listeDesMembres.add(membre);
-    }
-
+    /**
+     * Methode toString pour retourner la liste des membres en chaine de caracteres
+     * @return String
+     */
     public String toString() {
         String retour = new String();
         for (Membre membre : listeDesMembres) {
@@ -36,19 +41,19 @@ public class ListeMembres {
         return retour;
     }
 
+    /**
+     * Accesseur du champ listeDesMembres
+     * @return la liste des membres
+     */
     public ArrayList<Membre> getlisteDesMembres() {
         return listeDesMembres;
     }
 
-    public Membre getMembreParNom(String nom) {
-        for (Membre membre : listeDesMembres) {
-            if (membre.getnomDuMembre().equalsIgnoreCase(nom)) {
-                return membre;
-            }
-        }
-        return null;
-    }
-
+    /**
+     * Permet de récuperer la ville de résidence d'un membre spécifique
+     * @param nomMembre
+     * @return String : ville de residence du membre
+     */
     public String getVilleParNom(String nomMembre) {
         for (Membre membre : listeDesMembres) {
             if (membre.getnomDuMembre().equals(nomMembre)) {

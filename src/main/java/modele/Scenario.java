@@ -14,10 +14,19 @@ public class Scenario {
     private int nbTotalChemins; // compteur global
 
 
+    /**
+     * Accesseur du champ nbTotalChemins
+     * @return le nombre total de chemins exploré pour le scenario
+     */
     public int getNbTotalChemins() {
         return nbTotalChemins;
     }
 
+    /**
+     * Construteur par id du scenario (int)
+     * @param idScenario
+     * @throws FileNotFoundException
+     */
     public Scenario(int idScenario) throws FileNotFoundException {
 
         ListeMembres liste = new ListeMembres();
@@ -31,42 +40,14 @@ public class Scenario {
         remplissageScenario();
     }
 
+    /**
+     * Constructeur par nom du scenario (String)
+     * @param scenario
+     * @throws FileNotFoundException
+     */
     public Scenario(String scenario) throws FileNotFoundException {
-        File doc = new File("fichier/membres_APPLI.txt");
-        Scanner obj = new Scanner(doc);
-        String regex = "[,\\.\\s]";
         ListeMembres liste = new ListeMembres();
-
-        while (obj.hasNextLine()) {
-
-            String[] myArray = obj.nextLine().split(regex);
-            Membre membre = new Membre(myArray[0], myArray[1]);
-            liste.addMembre(membre);
-
-        }
-
-        File doc2 = new File("fichier/distances.txt");
-        Scanner obj2 = new Scanner(doc2);
-        ArrayList<String> list = new ArrayList<String>();
-        while (obj2.hasNextLine()) {
-            String line = obj2.nextLine();
-            String[] split = line.split(regex);
-            list.add(split[0]);
-        }
         ListeVilles listeVilles = new ListeVilles();
-        Scanner obj3 = new Scanner(doc2);
-        while (obj3.hasNextLine()) {
-
-            String[] myArray = obj3.nextLine().split(regex);
-            Ville ville = new Ville(myArray[0]);
-
-            for (int i = 1; i < myArray.length; i++) {
-                int dist = Integer.parseInt(myArray[i]);
-                ville.ajout(list.get(i - 1),dist);
-            }
-            listeVilles.ajoutVilles(ville);
-
-        }
         String idStr = scenario.replaceAll("[^0-9]", "");
         int Nid = Integer.parseInt(idStr);
 
@@ -78,6 +59,10 @@ public class Scenario {
         remplissageScenario();
     }
 
+    /**
+     * Remplis les infos du scenario
+     * @throws FileNotFoundException
+     */
     public void remplissageScenario() throws FileNotFoundException {
         String regex = "[,\\.\\s]";
         File doc = new File("scenario/scenario_"+id+".txt");
@@ -90,30 +75,59 @@ public class Scenario {
         }
     }
 
+    /**
+     * Accesseur du champ id
+     * @return retourne l'id du scenario
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Ajouter une association (vendeur / acheteur) a la liste scenarios
+     * @param source
+     * @param destination
+     */
     public void ajout(String source, String destination) {
         scenarios.add(new Pair<>(source, destination));
     }
 
+    /**
+     * Methode toString
+     * @return une chaine de caractere renvoyant les infos du scenario
+     */
     public String toString() {
         return "Scenario [id=" + id + ", scenarios=" + scenarios + "]";
     }
 
+    /**
+     * Accesseur sur le champ scenarios
+     * @return les contraintes du scenario
+     */
     public ArrayList<Pair<String,String>> getScenarios() {
         return scenarios;
     }
 
+    /**
+     * Accesseur sur le champ villes
+     * @return la liste des villes
+     */
     public ListeVilles getVilles() {
         return villes;
     }
 
+    /**
+     * Accesseur sur le champ membre
+     * @return la liste des membres
+     */
     public ListeMembres getMembres() {
         return membres;
     }
 
+    /**
+     * Trouve les villes par les quels ils faut passer
+     * @return
+     */
     public ArrayList<String> trouveVillePassage() {
         ArrayList<String> liste = new ArrayList<>();
 
@@ -139,6 +153,10 @@ public class Scenario {
         return liste;
     }
 
+    /**
+     * Associe les membres à leur ville
+     * @return
+     */
     public ArrayList<Pair<String,String>> associationMembresVilles() {
         ArrayList<Pair<String,String>> liste = new ArrayList<>();
         String villeDepart = new String();
@@ -165,6 +183,10 @@ public class Scenario {
         return liste;
     }
 
+    /**
+     * Calcul l'itnineraire le plus basique de manierer rapide
+     * @return
+     */
     public ArrayList<String> calculItineraire() {
         ArrayList<String> resultat = new ArrayList<>();
         ArrayList<Pair<String,String>> contraintes = this.associationMembresVilles();
@@ -213,6 +235,11 @@ public class Scenario {
         return resultat;
     }
 
+    /**
+     * Permet d'extraire les + et - des villes dans les algos
+     * @param sommet
+     * @return
+     */
     private String extraireNomVille(String sommet) {
         if (sommet.endsWith("+") || sommet.endsWith("-")) {
             return sommet.substring(0, sommet.length() - 1);
@@ -220,6 +247,11 @@ public class Scenario {
         return sommet;
     }
 
+    /**
+     * calcul les k meilleurs itineraires du scenario
+     * @param k
+     * @return
+     */
     public ArrayList<ArrayList<String>> calculKMeilleursItineraires(int k) {
         nbTotalChemins = 0; // reset du compteur
 
@@ -286,6 +318,16 @@ public class Scenario {
 
     }
 
+    /**
+     * Calcul les chemins les plus optimaux tri topologique recursif
+     * @param chemin
+     * @param candidats
+     * @param graphe
+     * @param degreEntree
+     * @param meilleurs
+     * @param k
+     * @param distancesVues
+     */
     private void triRecursif(ArrayList<String> chemin, List<String> candidats,
                            Map<String, List<String>> graphe, Map<String, Integer> degreEntree,
                            PriorityQueue<ArrayList<String>> meilleurs, int k, Set<Integer> distancesVues) {
@@ -359,7 +401,11 @@ public class Scenario {
     }
 
 
-
+    /**
+     * Calcul la distance totale a pracour pour un chemin donnée
+     * @param itineraire
+     * @return
+     */
     public int calculerDistanceTotale(ArrayList<String> itineraire) {
         int total = 0;
 

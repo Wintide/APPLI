@@ -11,6 +11,10 @@ public class LigneScenario extends HBox {
     private ComboBox listeVendeur;
     private ComboBox listeAcheteur;
 
+    /**
+     * Constructeur de la classe LigneScenario (correspodance au ligne que l'on voit dans le fenetre de creation de scenario
+     * @throws FileNotFoundException
+     */
     public LigneScenario() throws FileNotFoundException {
         setSpacing(15);
         Label vendeur = new Label("Vendeur : ");
@@ -28,6 +32,15 @@ public class LigneScenario extends HBox {
         this.getChildren().addAll(vendeur,listeVendeur,acheteur,listeAcheteur);
     }
 
+    /**
+     * Accesseur du champ listeVendeur
+     * @return String
+     */
     public String getVendeur() { return listeVendeur.getSelectionModel().getSelectedItem().toString(); }
+
+    /**
+     * Accesseur du champ listeAcheteur
+     * @return String
+     */
     public String getAcheteur() { return listeAcheteur.getSelectionModel().getSelectedItem().toString(); }
 }

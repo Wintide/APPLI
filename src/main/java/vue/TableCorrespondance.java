@@ -14,6 +14,9 @@ import java.util.Scanner;
 public class TableCorrespondance extends VBox {
     private TableView table;
 
+    /**
+     * Constructeur de la classe TableCorrespondance
+     */
     public TableCorrespondance() {
         table = new TableView<>();
 
@@ -35,6 +38,11 @@ public class TableCorrespondance extends VBox {
         this.setPrefWidth(500);
     }
 
+    /**
+     * Methode de mise a jour de la table de correspondance
+     * @param parScenario
+     * @throws FileNotFoundException
+     */
     public void miseAJour(String parScenario) throws FileNotFoundException {
         table.getItems().clear();
 

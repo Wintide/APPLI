@@ -8,6 +8,10 @@ import java.util.Scanner;
 public class ListeVilles {
     private ArrayList<Ville> listeDesVilles;
 
+    /**
+     * Constructeur automatique de la classe ListeVilles contenant le talbeau croisé de la liste des villes et distances
+     * @throws FileNotFoundException
+     */
     public ListeVilles() throws FileNotFoundException {
         listeDesVilles = new ArrayList<>();
         String regex = "[,\\.\\s]";
@@ -34,14 +38,18 @@ public class ListeVilles {
         }
     }
 
+    /**
+     * Accesseur du champ listeDesVilles
+     * @return la liste des villes
+     */
     public ArrayList<Ville> getlisteDesVilles() {
         return listeDesVilles;
     }
 
-    public void ajoutVilles(Ville ville) {
-        listeDesVilles.add(ville);
-    }
-
+    /**
+     * Methode toString
+     * @return String : chaine de caratere de la liste des villes
+     */
     @Override
     public String toString() {
         String res = "";
@@ -51,6 +59,11 @@ public class ListeVilles {
         return res;
     }
 
+    /**
+     * Permet de recuperer la ville et toutes ces correspondance grace à son nom
+     * @param nom
+     * @return Ville : la corresponde nom(String) à ville(Ville)
+     */
     public Ville getVilleParNom(String nom) {
         for (Ville ville : listeDesVilles) {
             if (ville.getnomVille().equals(nom)) {
@@ -60,6 +73,12 @@ public class ListeVilles {
         return null;
     }
 
+    /**
+     * Calcule la distance entre 2 villes
+     * @param villeA
+     * @param villeB
+     * @return int : distance entre 2 villes
+     */
     public int getDistance(String villeA, String villeB) {
         for (Ville ville : listeDesVilles) {
             if (ville.getnomVille().equals(villeA)) {

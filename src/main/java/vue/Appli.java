@@ -16,6 +16,9 @@ public class Appli extends VBox {
     private static ScrollPane fenetreCreationScrollPane;
     private static Menu scenario;
 
+    /**
+     * Constructeur de notre fenetre / APPLI qui contient toute les autres composantes de vue
+     */
     public Appli() {
         controleur = new Controleur();
         fenetreScenario = new FenetreScenario();
@@ -52,14 +55,33 @@ public class Appli extends VBox {
 
     }
 
+    /**
+     * Accesseur du champ controleur
+     * @return
+     */
     public static Controleur getControleur() { return controleur; }
 
+    /**
+     * Accesseur du champ fenetreScenario
+     * @return
+     */
     public static FenetreScenario getFenetreScenario() { return fenetreScenario; }
 
+    /**
+     * Accesseur du champ fenetreCreation
+     * @return
+     */
     public static FenetreCreation getFenetreCreation() { return fenetreCreation; }
 
+    /**
+     * Accesseur du champ fenetreCreationScrollPane
+     * @return
+     */
     public static ScrollPane getFenetreCreationScrollPane() { return fenetreCreationScrollPane; }
 
+    /**
+     * Methode de "mise à jour" du menu contenant la liste des scenarios
+     */
     public static void remplissageMenuBarScenario() {
         scenario.getItems().clear();
         File fichier = new File("scenario");

@@ -18,6 +18,9 @@ public class FenetreCreation extends VBox {
     private int nbLigne = 0;
     private ArrayList<LigneScenario> listeLigne = new ArrayList<>();
 
+    /**
+     * Constructeur de la classe FenetreCreation
+     */
     public FenetreCreation() {
         this.setSpacing(10);
         this.setAlignment(Pos.TOP_LEFT);
@@ -27,6 +30,10 @@ public class FenetreCreation extends VBox {
         this.getChildren().add(new HBox(ajouterUneLigne, retirerUneLigne, enregistrer));
     }
 
+    /**
+     * Ajoute une ligne de la classe LigneScenario à l'interface
+     * @throws FileNotFoundException
+     */
     public void ajouterUneLigne() throws FileNotFoundException {
         nbLigne++;
         LigneScenario ligneScenario = new LigneScenario();
@@ -34,12 +41,20 @@ public class FenetreCreation extends VBox {
         listeLigne.add(ligneScenario);
     }
 
+    /**
+     * Retire une ligne de l'interface
+     * @throws FileNotFoundException
+     */
     public void retirerUneLigne() throws FileNotFoundException {
         nbLigne--;
         this.getChildren().remove(nbLigne+1);
         listeLigne.remove(listeLigne.get(nbLigne-1));
     }
 
+    /**
+     * Enregistre le contenu des lignes actuels dans un nouveau fichier (gerer dans le controleur)
+     * @return ArrayList
+     */
     public ArrayList<String> enregistrer() {
         ArrayList<String> nouveauScenario = new ArrayList<>();
 
@@ -54,8 +69,27 @@ public class FenetreCreation extends VBox {
         return nouveauScenario;
     }
 
+    /**
+     * Accesseur du champ ajouterUneLigne
+     * @return Button
+     */
     public Button getAjouterUneLigne() { return ajouterUneLigne; }
+
+    /**
+     * Accesseur du champ retirerUneLigne
+     * @return Button
+     */
     public Button getRetirerUneLigne() { return retirerUneLigne; }
+
+    /**
+     * Accesseur du champ enregistrer
+     * @return Button
+     */
     public Button getEnregistrer() { return enregistrer; }
+
+    /**
+     * Accesseur du champ nbLigne
+     * @return int
+     */
     public int getNbLigne() { return nbLigne; }
 }

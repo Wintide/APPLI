@@ -17,28 +17,31 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Parcours extends VBox {
-    private Label chMessageSelectionScenario;
-    private Label chItineraireQuelconque;
-    private Label chMeilleurItineraire;
-    private Label chK;
-    private TextField chSaisisK;
+    private Label messageSelectionScenario;
+    private Label itineraireQuelconque;
+    private Label meilleurItineraire;
+    private Label k;
+    private TextField saisisK;
     private TableView table;
     private int idScenarioActuel;
 
+    /**
+     * Constructeur de la classe Parcours contenant les infos d'un scenario
+     */
     public Parcours() {
 
-        chMessageSelectionScenario = new Label("Veuillez choisir un scenario!");
-        chItineraireQuelconque = new Label("");
-        chMeilleurItineraire = new Label("");
-        chK = new Label("Saisis un K : ");
+        messageSelectionScenario = new Label("Veuillez choisir un scenario!");
+        itineraireQuelconque = new Label("");
+        meilleurItineraire = new Label("");
+        k = new Label("Saisis un K : ");
 
         HBox hb = new HBox();
 
-        chSaisisK = new TextField();
-        chSaisisK.setOnKeyPressed(event -> {
+        saisisK = new TextField();
+        saisisK.setOnKeyPressed(event -> {
             String keyValue = event.getCode().getName();
-            if (keyValue.equals("Enter") && !chSaisisK.getText().equals("")) {
-                int k = Integer.parseInt(chSaisisK.getText());
+            if (keyValue.equals("Enter") && !saisisK.getText().equals("")) {
+                int k = Integer.parseInt(saisisK.getText());
                 try {
                     this.majTable(k);
                 } catch (FileNotFoundException e) {
@@ -46,10 +49,10 @@ public class Parcours extends VBox {
                 }
             }
         });
-        chSaisisK.setVisible(false);
-        chK.setVisible(false);
+        saisisK.setVisible(false);
+        k.setVisible(false);
 
-        hb.getChildren().addAll(chK,chSaisisK);
+        hb.getChildren().addAll(k,saisisK);
 
         table = new TableView<>();
 
@@ -65,36 +68,80 @@ public class Parcours extends VBox {
         table.getColumns().addAll(colDistance, colChemin);
         table.setVisible(false);
 
-        this.getChildren().addAll(chMessageSelectionScenario,chItineraireQuelconque,chMeilleurItineraire,hb,table);
+        this.getChildren().addAll(messageSelectionScenario,itineraireQuelconque,meilleurItineraire,hb,table);
         this.setPrefWidth(775);
 
     }
 
-    public Label getChMessageSelectionScenario() {
-        return chMessageSelectionScenario;
+    /**
+     * Accesseur du champ messageSelectionScenario
+     * @return Label
+     */
+    public Label getmessageSelectionScenario() {
+        return messageSelectionScenario;
     }
 
-    public TextField getChSaisisK() {  return chSaisisK;  }
-    public Label getChK() {  return chK;  }
+    /**
+     * Accesseur du champ saisisK
+     * @return TextField
+     */
+    public TextField getsaisisK() {  return saisisK;  }
+
+    /**
+     * Accesseur du champ k
+     * @return Label
+     */
+    public Label getk() {  return k;  }
+
+    /**
+     * Accesseur du champ table
+     * @return TableView
+     */
     public TableView getTable() {  return table;  }
+
+    /**
+     * Accesseur du champ idScenarioActuel
+     * @return int
+     */
     public int getIdScenarioActuel() { return idScenarioActuel;}
 
+    /**
+     * Seteur du champ idScenarioActuel
+     * @param idScenarioActuel
+     */
     public void setIdScenarioActuel(int idScenarioActuel) { this.idScenarioActuel = idScenarioActuel;}
 
-    public void setChMessageSelectionScenario(String parContenuLabelScenario) {
-        chMessageSelectionScenario.setText(parContenuLabelScenario);
+    /**
+     * Seteur du champ messageSelectionScenario
+     * @param contenuLabelScenario
+     */
+    public void setmessageSelectionScenario(String contenuLabelScenario) {
+        messageSelectionScenario.setText(contenuLabelScenario);
     }
 
-    public void setChItineraireQuelconque(String parContenuLabelItineraire) {
-        chItineraireQuelconque.setText(parContenuLabelItineraire);
+    /**
+     * Seteur du champ itineraireQuelconque
+     * @param contenuLabelItineraire
+     */
+    public void setitineraireQuelconque(String contenuLabelItineraire) {
+        itineraireQuelconque.setText(contenuLabelItineraire);
     }
 
-    public void setChMeilleurItineraire(String parContenuLabelMeilleurItineraire) {
-        chMeilleurItineraire.setText(parContenuLabelMeilleurItineraire);
+    /**
+     * Seteur du champ meilleurItineraire
+     * @param contenuLabelMeilleurItineraire
+     */
+    public void setmeilleurItineraire(String contenuLabelMeilleurItineraire) {
+        meilleurItineraire.setText(contenuLabelMeilleurItineraire);
     }
 
+    /**
+     * Methode de mise à jour de l'affichage de la fenetre
+     * @param parScenario
+     * @throws FileNotFoundException
+     */
     public void miseAJour(String parScenario) throws FileNotFoundException {
-        setChMessageSelectionScenario("Info sur : "+parScenario);
+        setmessageSelectionScenario("Info sur : "+parScenario);
 
         Scenario scenario = new Scenario(parScenario);
 
@@ -103,21 +150,26 @@ public class Parcours extends VBox {
         ArrayList<ArrayList<String>> meilleurs = scenario.calculKMeilleursItineraires(1);
         for (ArrayList<String> chemin : meilleurs) {
             String iti = chemin + " -> " + scenario.calculerDistanceTotale(chemin) + " km";
-            setChMeilleurItineraire("Meilleur itineraire : "+iti);
+            setmeilleurItineraire("Meilleur itineraire : "+iti);
         }
 
-        setChItineraireQuelconque("Itineraire quelconque : " + scenario.calculItineraire() + " -> " + scenario.calculerDistanceTotale(scenario.calculItineraire()) + " km");
+        setitineraireQuelconque("Itineraire quelconque : " + scenario.calculItineraire() + " -> " + scenario.calculerDistanceTotale(scenario.calculItineraire()) + " km");
 
-        getChSaisisK().setVisible(true);
-        getChK().setVisible(true);
-        getChSaisisK().setText("");
+        getsaisisK().setVisible(true);
+        getk().setVisible(true);
+        getsaisisK().setText("");
         getTable().setVisible(true);
         getTable().getItems().clear();
-        getChSaisisK().requestFocus();
+        getsaisisK().requestFocus();
 
 
     }
 
+    /**
+     * Methode de mise a jour de la table
+     * @param k
+     * @throws FileNotFoundException
+     */
     public void majTable(int k) throws FileNotFoundException {
         getTable().getItems().clear();
         Scenario scenario = new Scenario(idScenarioActuel);

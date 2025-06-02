@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baa411ab-9796-4abc-81d2-eea7f0738795" name="Changes" comment="Unification">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/appli.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/appli.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controleur/Controleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vue/Appli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/Appli.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vue/FenetreCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/FenetreCreation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vue/LigneScenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/LigneScenario.java" afterDir="false" />
+    <list default="true" id="baa411ab-9796-4abc-81d2-eea7f0738795" name="Changes" comment="Finissions algorithmique">
+      <change beforePath="$PROJECT_DIR$/src/main/java/modele/LigneCorrespondance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/LigneCorrespondance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modele/LigneKmeilleurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/LigneKmeilleurs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modele/ListeMembres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/ListeMembres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modele/ListeVilles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/ListeVilles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modele/Membre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Membre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modele/Scenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Scenario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +123,7 @@
       <workItem from="1748774270071" duration="424000" />
       <workItem from="1748774710940" duration="359000" />
       <workItem from="1748775188661" duration="8401000" />
-      <workItem from="1748846132077" duration="2173000" />
+      <workItem from="1748846132077" duration="3597000" />
     </task>
     <task id="LOCAL-00001" summary="Création du projets">
       <option name="closed" value="true" />
@@ -261,7 +261,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748783107099</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Finissions algorithmique">
+      <option name="closed" value="true" />
+      <created>1748848392857</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1748848392857</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,6 +291,7 @@
     <MESSAGE value="Finissions ihm" />
     <MESSAGE value="Presque bon" />
     <MESSAGE value="Unification" />
-    <option name="LAST_COMMIT_MESSAGE" value="Unification" />
+    <MESSAGE value="Finissions algorithmique" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finissions algorithmique" />
   </component>
 </project>
