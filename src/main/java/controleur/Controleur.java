@@ -9,7 +9,11 @@ import vue.FenetreCreation;
 import vue.FenetreScenario;
 import vue.TableCorrespondance;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class Controleur implements EventHandler {
@@ -63,7 +67,30 @@ public class Controleur implements EventHandler {
                 }
             }
             if (((Button) event.getSource()).getText().equals("Enregistrer") && fenetreCreation.getNbLigne()!=0) {
-                System.out.println("Enregistrement");
+                System.out.println("Enregistrement en cours...");
+                ArrayList<String> scenarioPresqueFini = fenetreCreation.enregistrer();
+
+                int nombreDeScenario = 0;
+                File dossier = new File("scenario");
+                for (File fichier : dossier.listFiles()) {
+                    nombreDeScenario++;
+                }
+
+                File nouveauFichier = new File("scenario"+File.separator+"scenario_"+nombreDeScenario+".txt");
+                try {
+                    FileWriter fileWriter = new FileWriter(nouveauFichier);
+                    for (String scenario : scenarioPresqueFini) {
+                        fileWriter.write(scenario+"\n");
+                    }
+                    fileWriter.close();
+                    Appli.remplissageMenuBarScenario();
+                    System.out.println("Enregistrement terminé!");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+
             }
         }
 

@@ -14,6 +14,7 @@ public class Appli extends VBox {
     private static FenetreScenario fenetreScenario;
     private static FenetreCreation fenetreCreation;
     private static ScrollPane fenetreCreationScrollPane;
+    private static Menu scenario;
 
     public Appli() {
         controleur = new Controleur();
@@ -22,7 +23,7 @@ public class Appli extends VBox {
         fenetreCreationScrollPane = new ScrollPane(fenetreCreation);
 
         MenuBar menuBar = new MenuBar();
-        Menu scenario = new Menu("Scenario");
+        scenario = new Menu("Scenario");
         Menu creation = new Menu("Creation");
         Menu quitter = new Menu("Quitter");
         menuBar.getMenus().addAll(scenario, creation, quitter);
@@ -58,6 +59,17 @@ public class Appli extends VBox {
     public static FenetreCreation getFenetreCreation() { return fenetreCreation; }
 
     public static ScrollPane getFenetreCreationScrollPane() { return fenetreCreationScrollPane; }
+
+    public static void remplissageMenuBarScenario() {
+        scenario.getItems().clear();
+        File fichier = new File("scenario");
+
+        for (File f : fichier.listFiles()) {
+            MenuItem item = new MenuItem(f.getName());
+            item.addEventHandler(ActionEvent.ACTION, new Controleur());
+            scenario.getItems().add(item);
+        }
+    }
 
 
 }
