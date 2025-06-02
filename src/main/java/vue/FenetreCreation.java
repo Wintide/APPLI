@@ -59,8 +59,10 @@ public class FenetreCreation extends VBox {
         ArrayList<String> nouveauScenario = new ArrayList<>();
 
         for (LigneScenario ligneScenario : listeLigne) {
+
             String vendeur = ligneScenario.getVendeur();
             String acheteur = ligneScenario.getAcheteur();
+
             String vente = vendeur + " -> " + acheteur;
 
             nouveauScenario.add(vente);

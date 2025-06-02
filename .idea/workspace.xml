@@ -4,13 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baa411ab-9796-4abc-81d2-eea7f0738795" name="Changes" comment="Finissions algorithmique">
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/LigneCorrespondance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/LigneCorrespondance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/LigneKmeilleurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/LigneKmeilleurs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/ListeMembres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/ListeMembres.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/ListeVilles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/ListeVilles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modele/Membre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Membre.java" afterDir="false" />
+    <list default="true" id="baa411ab-9796-4abc-81d2-eea7f0738795" name="Changes" comment="Documentation">
+      <change afterPath="$PROJECT_DIR$/src/test/java/modele/LigneKmeilleursTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/modele/ListeMembresTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/modele/ListeVillesTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/modele/MembreTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/modele/ScenarioTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/modele/VilleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/modele/Scenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Scenario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modele/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modele/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modele/TestScenarios.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modele/TestVille.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vue/FenetreCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vue/FenetreCreation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="Exception" />
         <option value="Class" />
       </list>
     </option>
@@ -58,28 +65,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ClientGraphe.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ClientGrapheOriente.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestScenarios.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestVille.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/thoma/OneDrive/Bureau/projet2&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ClientGraphe.executor": "Run",
+    "Application.ClientGrapheOriente.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Test.executor": "Run",
+    "Application.TestScenarios.executor": "Run",
+    "Application.TestVille.executor": "Run",
+    "JUnit.LigneKmeilleursTest.executor": "Run",
+    "JUnit.ListeMembresTest.executor": "Run",
+    "JUnit.ListeVillesTest.executor": "Run",
+    "JUnit.MembreTest.executor": "Run",
+    "JUnit.ScenarioTest.executor": "Run",
+    "JUnit.VilleTest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Qualité de Dev/Calculatrice",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\thoma\OneDrive\Bureau\DEV\Intellij\APPLI\scenario" />
@@ -123,7 +136,7 @@
       <workItem from="1748774270071" duration="424000" />
       <workItem from="1748774710940" duration="359000" />
       <workItem from="1748775188661" duration="8401000" />
-      <workItem from="1748846132077" duration="3597000" />
+      <workItem from="1748846132077" duration="8048000" />
     </task>
     <task id="LOCAL-00001" summary="Création du projets">
       <option name="closed" value="true" />
@@ -269,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748848392857</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Documentation">
+      <option name="closed" value="true" />
+      <created>1748850859920</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1748850859920</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,6 +313,7 @@
     <MESSAGE value="Presque bon" />
     <MESSAGE value="Unification" />
     <MESSAGE value="Finissions algorithmique" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finissions algorithmique" />
+    <MESSAGE value="Documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentation" />
   </component>
 </project>

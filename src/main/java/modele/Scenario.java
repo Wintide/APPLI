@@ -71,6 +71,7 @@ public class Scenario {
             String line = scan.nextLine();
             String[] split = line.split(regex);
             this.ajout(split[0], split[2]);
+            System.out.println(1);
 
         }
     }

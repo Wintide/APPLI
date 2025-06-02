@@ -25,15 +25,8 @@ public class Test {
             String idSc = numScenario.nextLine();
             int intId = Integer.parseInt(idSc);
 
-            File doc3 = new File("scenario/scenario_"+idSc+".txt");
-            Scanner obj4 = new Scanner(doc3);
             Scenario scenario = new Scenario(intId);
-            while (obj4.hasNextLine()) {
-                String line = obj4.nextLine();
-                String[] split = line.split(regex);
-                scenario.ajout(split[0], split[2]);
 
-            }
 
             System.out.println(scenario.associationMembresVilles());
             System.out.println(scenario.trouveVillePassage());
