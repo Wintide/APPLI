@@ -200,21 +200,21 @@ public class Scenario {
         }
 
         HashMap<String, ArrayList<String>> graphe = new HashMap<>();
-        HashMap<String, Integer> degreEntree = new HashMap<>();
+        HashMap<String, Integer> degreEntrant = new HashMap<>();
 
         for (String s : sommets) {
             graphe.put(s, new ArrayList<>());
-            degreEntree.put(s, 0);
+            degreEntrant.put(s, 0);
         }
 
         for (Pair<String, String> arc : contraintes) {
             graphe.get(arc.getKey()).add(arc.getValue());
-            degreEntree.put(arc.getValue(), degreEntree.get(arc.getValue()) + 1);
+            degreEntrant.put(arc.getValue(), degreEntrant.get(arc.getValue()) + 1);
         }
 
         ArrayList<String> queue = new ArrayList<>();
         for (String s : sommets) {
-            if (degreEntree.get(s) == 0) {
+            if (degreEntrant.get(s) == 0) {
                 queue.add(s);
             }
         }
@@ -224,8 +224,8 @@ public class Scenario {
             resultat.add(courant);
 
             for (String voisin : graphe.get(courant)) {
-                degreEntree.put(voisin, degreEntree.get(voisin) - 1);
-                if (degreEntree.get(voisin) == 0) {
+                degreEntrant.put(voisin, degreEntrant.get(voisin) - 1);
+                if (degreEntrant.get(voisin) == 0) {
                     queue.add(voisin);
                 }
             }
@@ -260,7 +260,7 @@ public class Scenario {
 
         Set<String> sommets = new HashSet<>();
         Map<String, List<String>> graphe = new HashMap<>();
-        Map<String, Integer> degreEntree = new HashMap<>();
+        Map<String, Integer> degreEntrant = new HashMap<>();
 
         for (Pair<String, String> arc : contraintes) {
             sommets.add(arc.getKey());
@@ -269,12 +269,12 @@ public class Scenario {
 
         for (String s : sommets) {
             graphe.put(s, new ArrayList<>());
-            degreEntree.put(s, 0);
+            degreEntrant.put(s, 0);
         }
 
         for (Pair<String, String> arc : contraintes) {
             graphe.get(arc.getKey()).add(arc.getValue());
-            degreEntree.put(arc.getValue(), degreEntree.get(arc.getValue()) + 1);
+            degreEntrant.put(arc.getValue(), degreEntrant.get(arc.getValue()) + 1);
         }
 
         PriorityQueue<ArrayList<String>> meilleurs = new PriorityQueue<>(
@@ -283,14 +283,14 @@ public class Scenario {
 
         List<String> candidats = new ArrayList<>();
         for (String s : sommets) {
-            if (degreEntree.get(s) == 0) {
+            if (degreEntrant.get(s) == 0) {
                 candidats.add(s);
             }
         }
 
         Set<Integer> distancesVues = new HashSet<>();
 
-        triRecursif(new ArrayList<>(), candidats, graphe, new HashMap<>(degreEntree), meilleurs, k, distancesVues);
+        triRecursif(new ArrayList<>(), candidats, graphe, new HashMap<>(degreEntrant), meilleurs, k, distancesVues);
 
         ArrayList<ArrayList<String>> trie = new ArrayList<>(meilleurs);
         trie.sort(Comparator.comparingInt(this::calculerDistanceTotale));
@@ -317,13 +317,13 @@ public class Scenario {
      * @param chemin
      * @param candidats
      * @param graphe
-     * @param degreEntree
+     * @param degreEntrant
      * @param meilleurs
      * @param k
      * @param distancesVues
      */
     private void triRecursif(ArrayList<String> chemin, List<String> candidats,
-                           Map<String, List<String>> graphe, Map<String, Integer> degreEntree,
+                           Map<String, List<String>> graphe, Map<String, Integer> degreEntrant,
                            PriorityQueue<ArrayList<String>> meilleurs, int k, Set<Integer> distancesVues) {
         nbTotalChemins++;
 
@@ -331,7 +331,7 @@ public class Scenario {
             System.out.println(nbTotalChemins);
         }
 
-        if (chemin.size() == degreEntree.size()) {
+        if (chemin.size() == degreEntrant.size()) {
 
 
             ArrayList<String> complet = new ArrayList<>();
@@ -384,20 +384,20 @@ public class Scenario {
             nouveauxCandidats.remove(i);
 
             for (String voisin : graphe.get(courant)) {
-                degreEntree.put(voisin, degreEntree.get(voisin) - 1);
-                if (degreEntree.get(voisin) == 0) {
+                degreEntrant.put(voisin, degreEntrant.get(voisin) - 1);
+                if (degreEntrant.get(voisin) == 0) {
                     nouveauxCandidats.add(voisin);
                 }
             }
 
             if (nbTotalChemins < 10000000) {
-                triRecursif(chemin, nouveauxCandidats, graphe, new HashMap<>(degreEntree), meilleurs, k, distancesVues);
+                triRecursif(chemin, nouveauxCandidats, graphe, new HashMap<>(degreEntrant), meilleurs, k, distancesVues);
             }
 
 
             chemin.remove(chemin.size() - 1);
             for (String voisin : graphe.get(courant)) {
-                degreEntree.put(voisin, degreEntree.get(voisin) + 1);
+                degreEntrant.put(voisin, degreEntrant.get(voisin) + 1);
             }
         }
     }
