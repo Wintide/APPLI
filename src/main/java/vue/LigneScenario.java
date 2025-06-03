@@ -17,10 +17,18 @@ public class LigneScenario extends HBox {
      */
     public LigneScenario() throws FileNotFoundException {
         setSpacing(15);
-        Label vendeur = new Label("Vendeur : ");
-        listeVendeur = new ComboBox();
-        Label acheteur = new Label("Acheteur : ");
-        listeAcheteur = new ComboBox();
+        Label vendeur = new Label("_Vendeur :");
+        vendeur.setMnemonicParsing(true);
+        listeVendeur = new ComboBox<>();
+        vendeur.setLabelFor(listeVendeur);
+        vendeur.setOnMouseClicked(event -> listeVendeur.show());
+
+        Label acheteur = new Label("_Acheteur :");
+        acheteur.setMnemonicParsing(true);
+        listeAcheteur = new ComboBox<>();
+        acheteur.setLabelFor(listeAcheteur);
+        acheteur.setOnMouseClicked(event -> listeAcheteur.show());
+
 
         ListeMembres listeMembres = new ListeMembres();
 
@@ -30,6 +38,18 @@ public class LigneScenario extends HBox {
         }
 
         this.getChildren().addAll(vendeur,listeVendeur,acheteur,listeAcheteur);
+
+        listeVendeur.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+            if (isNowFocused) {
+                listeVendeur.show();
+            }
+        });
+
+        listeAcheteur.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+            if (isNowFocused) {
+                listeAcheteur.show();
+            }
+        });
     }
 
     /**

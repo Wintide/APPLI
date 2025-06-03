@@ -20,6 +20,12 @@
     -fx-background-color: #0056b3;
 }
 
+.button:focused {
+    -fx-border-color: #585f68;
+    -fx-background-color: #0069d9;
+    -fx-text-fill: white;
+}
+
 .hbox {
     -fx-spacing: 10;
     -fx-padding: 5;
@@ -31,6 +37,13 @@
     -fx-border-radius: 4;
     -fx-padding: 4;
 }
+
+.combo-box:focused {
+    -fx-border-color: #4A90E2;
+    -fx-border-width: 2;
+    -fx-background-color: #E6F0FA;
+}
+
 
 .scroll-pane {
     -fx-background: transparent;

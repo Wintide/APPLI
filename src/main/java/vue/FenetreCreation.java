@@ -49,7 +49,7 @@ public class FenetreCreation extends VBox {
     public void retirerUneLigne() throws FileNotFoundException {
         nbLigne--;
         this.getChildren().remove(nbLigne+1);
-        listeLigne.remove(listeLigne.get(nbLigne-1));
+        listeLigne.remove(listeLigne.get(nbLigne));
     }
 
     /**

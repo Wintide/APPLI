@@ -254,11 +254,10 @@ public class Scenario {
      * @return
      */
     public ArrayList<ArrayList<String>> calculKMeilleursItineraires(int k) {
-        nbTotalChemins = 0; // reset du compteur
+        nbTotalChemins = 0;
 
         ArrayList<Pair<String, String>> contraintes = this.associationMembresVilles();
 
-        // 1. Sommets et graphe
         Set<String> sommets = new HashSet<>();
         Map<String, List<String>> graphe = new HashMap<>();
         Map<String, Integer> degreEntree = new HashMap<>();
@@ -278,12 +277,10 @@ public class Scenario {
             degreEntree.put(arc.getValue(), degreEntree.get(arc.getValue()) + 1);
         }
 
-        // 2. PriorityQueue pour garder les k meilleurs (ordre croissant de distance)
         PriorityQueue<ArrayList<String>> meilleurs = new PriorityQueue<>(
                 k, Comparator.comparingInt(this::calculerDistanceTotale).reversed()
         );
 
-        // 3. Noeuds sans prédécesseur (in-degree == 0)
         List<String> candidats = new ArrayList<>();
         for (String s : sommets) {
             if (degreEntree.get(s) == 0) {
@@ -295,13 +292,9 @@ public class Scenario {
 
         triRecursif(new ArrayList<>(), candidats, graphe, new HashMap<>(degreEntree), meilleurs, k, distancesVues);
 
-
-        // 4. Convertir PriorityQueue en liste triée
         ArrayList<ArrayList<String>> trie = new ArrayList<>(meilleurs);
         trie.sort(Comparator.comparingInt(this::calculerDistanceTotale));
-        //System.out.println(trie);
 
-        // Filtrage par distances différentes
         ArrayList<ArrayList<String>> resultatsFinal = new ArrayList<>();
         Set<Integer> distancesUnicites = new HashSet<>();
 
