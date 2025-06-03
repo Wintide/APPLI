@@ -49,6 +49,7 @@ public class Appli extends VBox {
         itemQuitter.addEventHandler(ActionEvent.ACTION, new Controleur());
 
         fenetreCreationScrollPane.setVisible(false);
+
         StackPane contenu = new StackPane();
         contenu.getChildren().addAll(fenetreScenario, fenetreCreationScrollPane);
         this.getChildren().addAll(menuBar, contenu);

@@ -34,6 +34,7 @@
 
 .scroll-pane {
     -fx-background: transparent;
+    -fx-background-color: #cccccc;
     -fx-padding: 10;
 }
 
