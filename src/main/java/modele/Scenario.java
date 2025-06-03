@@ -333,6 +333,11 @@ public class Scenario {
                            Map<String, List<String>> graphe, Map<String, Integer> degreEntree,
                            PriorityQueue<ArrayList<String>> meilleurs, int k, Set<Integer> distancesVues) {
         nbTotalChemins++;
+
+        if (nbTotalChemins%100000==0) {
+            System.out.println(nbTotalChemins);
+        }
+
         if (chemin.size() == degreEntree.size()) {
 
 
@@ -392,7 +397,10 @@ public class Scenario {
                 }
             }
 
-            triRecursif(chemin, nouveauxCandidats, graphe, new HashMap<>(degreEntree), meilleurs, k, distancesVues);
+            if (nbTotalChemins < 10000000) {
+                triRecursif(chemin, nouveauxCandidats, graphe, new HashMap<>(degreEntree), meilleurs, k, distancesVues);
+            }
+
 
             chemin.remove(chemin.size() - 1);
             for (String voisin : graphe.get(courant)) {

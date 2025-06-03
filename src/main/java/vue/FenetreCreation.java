@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.Controleur;
+import exception.ExceptionEnregistrement;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -55,10 +56,20 @@ public class FenetreCreation extends VBox {
      * Enregistre le contenu des lignes actuels dans un nouveau fichier (gerer dans le controleur)
      * @return ArrayList
      */
-    public ArrayList<String> enregistrer() {
+    public ArrayList<String> enregistrer() throws ExceptionEnregistrement {
         ArrayList<String> nouveauScenario = new ArrayList<>();
 
         for (LigneScenario ligneScenario : listeLigne) {
+
+
+
+            if (ligneScenario.getVendeur() == null || ligneScenario.getAcheteur() == null) {
+                throw new ExceptionEnregistrement("Ligne " + (listeLigne.indexOf(ligneScenario)+1) + " : une sélection est manquante.");
+            }
+
+            if (ligneScenario.getVendeur().equals(ligneScenario.getAcheteur())) {
+                throw new ExceptionEnregistrement("Ligne " + (listeLigne.indexOf(ligneScenario)+1) + " : les deux villes sélectionnées sont identiques.");
+            }
 
             String vendeur = ligneScenario.getVendeur();
             String acheteur = ligneScenario.getAcheteur();

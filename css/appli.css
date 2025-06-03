@@ -1,17 +1,13 @@
-/* Style général de la fenêtre */
+
 .root {
     -fx-font-family: "Segoe UI", sans-serif;
     -fx-background-color: #f8f9fa;
 }
 
-
-/* Hover effect on menu item */
 .menu-item:hover {
     -fx-background-color: #a5c0de;
 }
 
-
-/* Boutons */
 .button {
     -fx-background-color: #007bff;
     -fx-text-fill: white;
@@ -24,13 +20,11 @@
     -fx-background-color: #0056b3;
 }
 
-/* Lignes de formulaire */
 .hbox {
     -fx-spacing: 10;
     -fx-padding: 5;
 }
 
-/* ComboBox et champs */
 .combo-box, .text-field {
     -fx-background-color: white;
     -fx-border-color: #ced4da;
@@ -38,13 +32,11 @@
     -fx-padding: 4;
 }
 
-/* ScrollPane */
 .scroll-pane {
     -fx-background: transparent;
     -fx-padding: 10;
 }
 
-/* Pour les VBoxes contenant les lignes */
 .vbox {
     -fx-spacing: 10;
 }

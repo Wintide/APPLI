@@ -1,5 +1,6 @@
 package controleur;
 
+import exception.ExceptionEnregistrement;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
@@ -68,26 +69,37 @@ public class Controleur implements EventHandler {
             }
             if (((Button) event.getSource()).getText().equals("Enregistrer") && fenetreCreation.getNbLigne()!=0) {
                 System.out.println("Enregistrement en cours...");
-                ArrayList<String> scenarioPresqueFini = fenetreCreation.enregistrer();
 
-                int nombreDeScenario = 0;
-                File dossier = new File("scenario");
-                for (File fichier : dossier.listFiles()) {
-                    nombreDeScenario++;
-                }
-
-                File nouveauFichier = new File("scenario"+File.separator+"scenario_"+nombreDeScenario+".txt");
                 try {
-                    FileWriter fileWriter = new FileWriter(nouveauFichier);
-                    for (String scenario : scenarioPresqueFini) {
-                        fileWriter.write(scenario+"\n");
+                    ArrayList<String> scenarioPresqueFini = fenetreCreation.enregistrer();
+
+                    int nombreDeScenario = 0;
+                    File dossier = new File("scenario");
+                    for (File fichier : dossier.listFiles()) {
+                        nombreDeScenario++;
                     }
-                    fileWriter.close();
-                    Appli.remplissageMenuBarScenario();
-                    System.out.println("Enregistrement terminé!");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+
+                    File nouveauFichier = new File("scenario"+File.separator+"scenario_"+nombreDeScenario+".txt");
+                    try {
+                        FileWriter fileWriter = new FileWriter(nouveauFichier);
+                        for (String scenario : scenarioPresqueFini) {
+                            fileWriter.write(scenario+"\n");
+                        }
+                        fileWriter.close();
+                        Appli.remplissageMenuBarScenario();
+                        System.out.println("Enregistrement terminé!");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } catch (ExceptionEnregistrement e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur de saisie");
+                    alert.setHeaderText("Erreur dans le scénario");
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
                 }
+
+
 
 
 

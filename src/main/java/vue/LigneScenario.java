@@ -36,11 +36,25 @@ public class LigneScenario extends HBox {
      * Accesseur du champ listeVendeur
      * @return String
      */
-    public String getVendeur() { return listeVendeur.getSelectionModel().getSelectedItem().toString(); }
+    public String getVendeur() {
+        Object vendeur = listeVendeur.getSelectionModel().getSelectedItem();
+        if (vendeur != null) {
+            return vendeur.toString();
+        } else {
+            return null;
+        }
+    }
 
     /**
      * Accesseur du champ listeAcheteur
      * @return String
      */
-    public String getAcheteur() { return listeAcheteur.getSelectionModel().getSelectedItem().toString(); }
+    public String getAcheteur() {
+        Object acheteur = listeAcheteur.getSelectionModel().getSelectedItem();
+        if (acheteur != null) {
+            return acheteur.toString();
+        } else {
+            return null;
+        }
+    }
 }
